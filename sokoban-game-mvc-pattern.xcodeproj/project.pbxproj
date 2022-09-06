@@ -1,0 +1,387 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		6AE5D07C28C7CB85005EC9DB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE5D07B28C7CB85005EC9DB /* AppDelegate.swift */; };
+		6AE5D08528C7CB85005EC9DB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6AE5D08428C7CB85005EC9DB /* Assets.xcassets */; };
+		6AE5D08828C7CB85005EC9DB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6AE5D08628C7CB85005EC9DB /* LaunchScreen.storyboard */; };
+		6AE5D09028C7CBD2005EC9DB /* Viewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE5D08F28C7CBD2005EC9DB /* Viewer.swift */; };
+		6AE5D09228C7CBD8005EC9DB /* Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE5D09128C7CBD8005EC9DB /* Canvas.swift */; };
+		6AE5D09428C7CBDC005EC9DB /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE5D09328C7CBDC005EC9DB /* Model.swift */; };
+		6AE5D09628C7CBE3005EC9DB /* Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE5D09528C7CBE3005EC9DB /* Controller.swift */; };
+		6AE5D09828C7CBF6005EC9DB /* Levels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE5D09728C7CBF6005EC9DB /* Levels.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		6AE5D07828C7CB85005EC9DB /* sokoban-game-mvc-pattern.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "sokoban-game-mvc-pattern.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6AE5D07B28C7CB85005EC9DB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		6AE5D08428C7CB85005EC9DB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		6AE5D08728C7CB85005EC9DB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		6AE5D08928C7CB85005EC9DB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6AE5D08F28C7CBD2005EC9DB /* Viewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Viewer.swift; sourceTree = "<group>"; };
+		6AE5D09128C7CBD8005EC9DB /* Canvas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Canvas.swift; sourceTree = "<group>"; };
+		6AE5D09328C7CBDC005EC9DB /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		6AE5D09528C7CBE3005EC9DB /* Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Controller.swift; sourceTree = "<group>"; };
+		6AE5D09728C7CBF6005EC9DB /* Levels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Levels.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6AE5D07528C7CB85005EC9DB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		6AE5D06F28C7CB85005EC9DB = {
+			isa = PBXGroup;
+			children = (
+				6AE5D07A28C7CB85005EC9DB /* sokoban-game-mvc-pattern */,
+				6AE5D07928C7CB85005EC9DB /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		6AE5D07928C7CB85005EC9DB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6AE5D07828C7CB85005EC9DB /* sokoban-game-mvc-pattern.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6AE5D07A28C7CB85005EC9DB /* sokoban-game-mvc-pattern */ = {
+			isa = PBXGroup;
+			children = (
+				6AE5D07B28C7CB85005EC9DB /* AppDelegate.swift */,
+				6AE5D09A28C7CC19005EC9DB /* Models */,
+				6AE5D09928C7CC0C005EC9DB /* Viewers */,
+				6AE5D09B28C7CC2C005EC9DB /* Controllers */,
+				6AE5D08428C7CB85005EC9DB /* Assets.xcassets */,
+				6AE5D08628C7CB85005EC9DB /* LaunchScreen.storyboard */,
+				6AE5D08928C7CB85005EC9DB /* Info.plist */,
+			);
+			path = "sokoban-game-mvc-pattern";
+			sourceTree = "<group>";
+		};
+		6AE5D09928C7CC0C005EC9DB /* Viewers */ = {
+			isa = PBXGroup;
+			children = (
+				6AE5D09128C7CBD8005EC9DB /* Canvas.swift */,
+				6AE5D08F28C7CBD2005EC9DB /* Viewer.swift */,
+			);
+			path = Viewers;
+			sourceTree = "<group>";
+		};
+		6AE5D09A28C7CC19005EC9DB /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				6AE5D09328C7CBDC005EC9DB /* Model.swift */,
+				6AE5D09728C7CBF6005EC9DB /* Levels.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		6AE5D09B28C7CC2C005EC9DB /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				6AE5D09528C7CBE3005EC9DB /* Controller.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6AE5D07728C7CB85005EC9DB /* sokoban-game-mvc-pattern */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6AE5D08C28C7CB85005EC9DB /* Build configuration list for PBXNativeTarget "sokoban-game-mvc-pattern" */;
+			buildPhases = (
+				6AE5D07428C7CB85005EC9DB /* Sources */,
+				6AE5D07528C7CB85005EC9DB /* Frameworks */,
+				6AE5D07628C7CB85005EC9DB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "sokoban-game-mvc-pattern";
+			productName = "sokoban-game-mvc-pattern";
+			productReference = 6AE5D07828C7CB85005EC9DB /* sokoban-game-mvc-pattern.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6AE5D07028C7CB85005EC9DB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1340;
+				LastUpgradeCheck = 1340;
+				TargetAttributes = {
+					6AE5D07728C7CB85005EC9DB = {
+						CreatedOnToolsVersion = 13.4.1;
+					};
+				};
+			};
+			buildConfigurationList = 6AE5D07328C7CB85005EC9DB /* Build configuration list for PBXProject "sokoban-game-mvc-pattern" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 6AE5D06F28C7CB85005EC9DB;
+			productRefGroup = 6AE5D07928C7CB85005EC9DB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6AE5D07728C7CB85005EC9DB /* sokoban-game-mvc-pattern */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		6AE5D07628C7CB85005EC9DB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6AE5D08828C7CB85005EC9DB /* LaunchScreen.storyboard in Resources */,
+				6AE5D08528C7CB85005EC9DB /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6AE5D07428C7CB85005EC9DB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6AE5D09828C7CBF6005EC9DB /* Levels.swift in Sources */,
+				6AE5D09628C7CBE3005EC9DB /* Controller.swift in Sources */,
+				6AE5D07C28C7CB85005EC9DB /* AppDelegate.swift in Sources */,
+				6AE5D09028C7CBD2005EC9DB /* Viewer.swift in Sources */,
+				6AE5D09228C7CBD8005EC9DB /* Canvas.swift in Sources */,
+				6AE5D09428C7CBDC005EC9DB /* Model.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		6AE5D08628C7CB85005EC9DB /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6AE5D08728C7CB85005EC9DB /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		6AE5D08A28C7CB85005EC9DB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		6AE5D08B28C7CB85005EC9DB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		6AE5D08D28C7CB85005EC9DB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = GX7JN5V594;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "sokoban-game-mvc-pattern/Info.plist";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "sherislamdev.sokoban-game-mvc-pattern";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		6AE5D08E28C7CB85005EC9DB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = GX7JN5V594;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "sokoban-game-mvc-pattern/Info.plist";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "sherislamdev.sokoban-game-mvc-pattern";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6AE5D07328C7CB85005EC9DB /* Build configuration list for PBXProject "sokoban-game-mvc-pattern" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6AE5D08A28C7CB85005EC9DB /* Debug */,
+				6AE5D08B28C7CB85005EC9DB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6AE5D08C28C7CB85005EC9DB /* Build configuration list for PBXNativeTarget "sokoban-game-mvc-pattern" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6AE5D08D28C7CB85005EC9DB /* Debug */,
+				6AE5D08E28C7CB85005EC9DB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 6AE5D07028C7CB85005EC9DB /* Project object */;
+}
