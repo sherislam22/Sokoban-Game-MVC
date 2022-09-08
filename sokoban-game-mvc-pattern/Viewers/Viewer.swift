@@ -1,7 +1,6 @@
 import UIKit
 class Viewer: UIViewController {
     private var controller: Controller!
-    private var model: Model!
     private var board: Canvas!
     private var chieldView: UIView = {
         let view = UIView()
@@ -12,8 +11,8 @@ class Viewer: UIViewController {
     init() {
         super.init(nibName: nil, bundle: nil)
         self.controller = Controller(viewer: self)
-        self.model = controller!.getmodel()
-        self.board =  Canvas(frame: CGRect(x: 0, y: 0, width: 300, height: 300), model: self.model)
+        let model = controller!.getmodel()
+        self.board =  Canvas(frame: CGRect(x: 0, y: 0, width: 300, height: 300), model: model)
        print("im viewer")
     }
     required init?(coder: NSCoder) {
