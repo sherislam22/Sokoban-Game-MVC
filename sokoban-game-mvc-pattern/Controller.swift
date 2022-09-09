@@ -2,12 +2,10 @@ import Foundation
 import UIKit
 class Controller: NSObject {
     private let model: Model
-    private let viewer: Viewer
     private var x1: Int
     private var y1: Int
     init(viewer: Viewer) {
         model = Model(viewer: viewer)
-        self.viewer = viewer
         x1 = 0
         y1 = 0
         print("im controller")
@@ -48,7 +46,6 @@ class Controller: NSObject {
         if direction.elementsEqual("NO DIRECTION") {
             return
         }
-        print(direction)
         model.move(direction: direction)
     }
 }

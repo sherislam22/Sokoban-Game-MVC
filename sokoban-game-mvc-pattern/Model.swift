@@ -43,7 +43,6 @@ private func initialization() {
           return
        }
         arrayOfIndexies = Array(repeating: Array(repeating: 2, count: countFour), count: 2)
-        print(arrayOfIndexies)
         var a = 0
         for  i in 0..<desktop.count {
             for  j in 0..<desktop[i].count {
