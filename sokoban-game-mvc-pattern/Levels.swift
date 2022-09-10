@@ -96,7 +96,6 @@ class Levels {
                 text = String(array)
                 array.removeAll()
             }
-            
         return convert(text: text)
     }
 
