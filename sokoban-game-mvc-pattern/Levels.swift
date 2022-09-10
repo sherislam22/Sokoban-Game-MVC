@@ -73,15 +73,14 @@ class Levels {
     
     private func loadLevelFromFile(filename: String) -> [[Int]] {
         var text: String = ""
-        if let url = Bundle.main.url(forAuxiliaryExecutable: filename)?.absoluteURL {
-            let attributes = try? FileManager.default.attributesOfItem(atPath: url.path)
-            let fileSize: Int? = attributes?[.size] as? Int
-            var array: [Character] = Array(repeating: "0", count: fileSize!)
-            let filehandle = FileHandle(forReadingAtPath: url.path)
-            var index = 0
             do {
-                 let data = try? filehandle?.read(upToCount: fileSize!)
-                // чтение по символьно и запись в Data
+            let url = Bundle.main.url(forAuxiliaryExecutable: filename)?.absoluteURL
+                let attributes = try? FileManager.default.attributesOfItem(atPath: url!.path)
+                let fileSize: Int? = attributes![.size] as? Int
+                var array: [Character] = Array(repeating: "0", count: fileSize!)
+                let filehandle = FileHandle(forReadingAtPath: url!.path)
+                var index = 0
+                let data = try? filehandle?.read(upToCount: fileSize!)
                 for i in data! {
                     let unicode: Int = Int(i)
                     // преобразование unicode в символ
@@ -97,12 +96,13 @@ class Levels {
                         array.remove(at: index)
                     }
                 }
+                text = String(array)
+                array.removeAll()
             }
-            text = String(array)
-            array.removeAll()
-        }
+            
         return convert(text: text)
     }
+
     private func convert(text: String) -> [[Int]] {
         var row: Int = 0
         for i in text {
