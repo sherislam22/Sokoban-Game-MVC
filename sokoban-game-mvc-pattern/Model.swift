@@ -55,7 +55,7 @@ private func initialization() {
               }
                                 
     }
-    public func move(direction: String) {
+public func move(direction: String) {
         switch direction {
         case "Right": MoveRight()
         case "Left": MoveLeft()
@@ -65,11 +65,11 @@ private func initialization() {
             return
         }
         check()
-        viewer.update()
         won()
+        viewer.update()
     }
     
-    private func won() {
+private func won() {
         var won: Bool = true
         for j in 0..<arrayOfIndexies[0].count {
                     let x = arrayOfIndexies[0][j]
@@ -87,7 +87,7 @@ private func initialization() {
 
     }
 
-    private func check() {
+private func check() {
         for j in 0..<arrayOfIndexies[0].count {
                  let x = arrayOfIndexies[0][j]
                  let y = arrayOfIndexies[1][j]
@@ -96,13 +96,10 @@ private func initialization() {
                  }
               }
     }
-    public func getdesktop() -> [[Int]] {
+public func getdesktop() -> [[Int]] {
         return self.desktop
     }
-    
-   
-   
-    private func MoveBoxRight(x: Int, y:Int) -> Bool {
+private func MoveBoxRight(x: Int, y:Int) -> Bool {
         if desktop[x][y] == 3 {
             if desktop[x][y + 1] == 0 || desktop[x][y + 1] == 4  {
                
@@ -117,10 +114,9 @@ private func initialization() {
         return true
     }
     
-    private func MoveBoxLeft(x: Int, y:Int) -> Bool {
+private func MoveBoxLeft(x: Int, y:Int) -> Bool {
         if desktop[x][y] == 3 {
             if desktop[x][y - 1] == 0 ||  desktop[x][y - 1] == 4 {
-                
                 desktop[x][y] = 0
                 desktop[x][y - 1] = 3
                 viewer.update()
@@ -132,10 +128,9 @@ private func initialization() {
         return true
     }
 
-    private func MoveBoxUp(x: Int, y:Int) -> Bool {
+private func MoveBoxUp(x: Int, y:Int) -> Bool {
         if desktop[x][y] == 3 {
             if desktop[x - 1][y] == 0 ||  desktop[x - 1][y] == 4  {
-                
                 desktop[x][y] = 0
                 desktop[x - 1][y] = 3
                 viewer.update()
@@ -146,7 +141,7 @@ private func initialization() {
         }
         return true
     }
-    private func MoveBoxDown(x: Int, y:Int) -> Bool {
+private func MoveBoxDown(x: Int, y:Int) -> Bool {
         if desktop[x][y] == 3 {
             if desktop[x + 1][y] == 0  ||  desktop[x + 1][y] == 4  {
                 desktop[x][y] = 0
@@ -160,7 +155,7 @@ private func initialization() {
         return true
     }
     
-    public func MoveRight() {
+public func MoveRight() {
         if MoveBoxRight(x: IndexX, y: IndexY  + 1) {
             if  desktop[IndexX][IndexY + 1] == 0 || desktop[IndexX][IndexY + 1] == 4 {
                 desktop[IndexX][IndexY] = 0
@@ -170,7 +165,7 @@ private func initialization() {
     desktop[IndexX][IndexY] = 1
     }
     
-    public func MoveLeft() {
+public func MoveLeft() {
         if MoveBoxLeft(x: IndexX, y: IndexY  - 1) {
             if  desktop[IndexX][IndexY - 1] == 0 || desktop[IndexX][IndexY - 1] == 4 {
                 desktop[IndexX][IndexY] = 0
@@ -180,7 +175,7 @@ private func initialization() {
     desktop[IndexX][IndexY] = 1
     }
     
-    public func MoveTop() {
+public func MoveTop() {
         if MoveBoxUp(x: IndexX  - 1, y: IndexY) {
             if  desktop[IndexX - 1][IndexY] == 0  || desktop[IndexX - 1][IndexY] == 4{
                 desktop[IndexX][IndexY] = 0
@@ -190,7 +185,7 @@ private func initialization() {
     desktop[IndexX][IndexY] = 1
     }
 
-    public func MoveDown() {
+public func MoveDown() {
         if MoveBoxDown(x: IndexX  + 1, y: IndexY) {
             if  desktop[IndexX + 1][IndexY] == 0  || desktop[IndexX + 1][IndexY] == 4 {
                 desktop[IndexX][IndexY] = 0

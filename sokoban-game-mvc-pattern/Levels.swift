@@ -5,7 +5,7 @@ class Levels {
     private var prefixFileName: String
     private var endFileName: String
     init() {
-        self.level = 4
+        self.level = 1
         prefixFileName = "level"
         endFileName = ".sok"
     }
@@ -87,9 +87,6 @@ class Levels {
                     let symbol: Character = unicode.charAt
                     if symbol.isWholeNumber || symbol == "\n" {
                         array[index] = symbol
-                        index = index + 1
-                    } else if symbol == "\n" {
-                        array[index] = "A"
                         index = index + 1
                     }
                     else {
