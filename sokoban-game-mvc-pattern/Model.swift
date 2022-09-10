@@ -1,5 +1,5 @@
 class Model {
-    private let viewer: Viewer
+    private let viewer: Controller
     private var desktop: [[Int]]
     private var IndexX: Int
     private var IndexY: Int
@@ -7,7 +7,7 @@ class Model {
     private var arrayOfIndexies: [[Int]]
     private var drawBlueprint: Bool
     private var stateModel: Bool
-    init(viewer: Viewer) {
+    init(viewer: Controller) {
         self.viewer = viewer
         drawBlueprint = false
         stateModel = true
@@ -172,7 +172,7 @@ private func initialization() {
     
     public func MoveLeft() {
         if MoveBoxLeft(x: IndexX, y: IndexY  - 1) {
-            if  desktop[IndexX][IndexY - 1] == 0 || desktop[IndexX][IndexY + 1] == 4 {
+            if  desktop[IndexX][IndexY - 1] == 0 || desktop[IndexX][IndexY - 1] == 4 {
                 desktop[IndexX][IndexY] = 0
                 IndexY = IndexY - 1
             }

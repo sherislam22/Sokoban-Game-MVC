@@ -5,7 +5,7 @@ class Levels {
     private var prefixFileName: String
     private var endFileName: String
     init() {
-        self.level = 5
+        self.level = 1
         prefixFileName = "level"
         endFileName = ".sok"
     }
