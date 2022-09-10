@@ -70,13 +70,13 @@ class Controller: UIViewController {
         present(alert, animated: true)
     }
     
-    public func movePressed(position: CGPoint) {
+    private func movePressed(position: CGPoint) {
         x1 = Int(position.x)
         y1 = Int(position.y)
        
     }
     
-    public func mouseReleased(position: CGPoint) {
+    private func mouseReleased(position: CGPoint) {
         let x2: Int = Int(position.x)
         let y2: Int = Int(position.y)
         movePosition(x2: x2, y2: y2)

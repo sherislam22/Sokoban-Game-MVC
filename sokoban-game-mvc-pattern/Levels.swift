@@ -5,7 +5,7 @@ class Levels {
     private var prefixFileName: String
     private var endFileName: String
     init() {
-        self.level = 1
+        self.level = 4
         prefixFileName = "level"
         endFileName = ".sok"
     }
@@ -74,22 +74,18 @@ class Levels {
     private func loadLevelFromFile(filename: String) -> [[Int]] {
         var text: String = ""
         if let url = Bundle.main.url(forAuxiliaryExecutable: filename)?.absoluteURL {
-            let fileInputStream = InputStream(url: url)!
-            var attributes = try? FileManager.default.attributesOfItem(atPath: url.path)
-            var fileSize: Int? = attributes?[.size] as? Int
+            let attributes = try? FileManager.default.attributesOfItem(atPath: url.path)
+            let fileSize: Int? = attributes?[.size] as? Int
             var array: [Character] = Array(repeating: "0", count: fileSize!)
-            // очищаю память
-            fileSize = nil
-            attributes = nil
+            let filehandle = FileHandle(forReadingAtPath: url.path)
             var index = 0
             do {
+                 let data = try? filehandle?.read(upToCount: fileSize!)
                 // чтение по символьно и запись в Data
-                // расширил Data и там реализовал чтение по символьно
-                let data = try! Data(reading: fileInputStream)
-                for i in data {
-                    let byte: Int = Int(i)
-                    // преобразование байта в символ
-                    let symbol: Character = byte.charAt
+                for i in data! {
+                    let unicode: Int = Int(i)
+                    // преобразование unicode в символ
+                    let symbol: Character = unicode.charAt
                     if symbol.isWholeNumber || symbol == "\n" {
                         array[index] = symbol
                         index = index + 1
@@ -141,35 +137,8 @@ class Levels {
         }
         return array
     }
-    
     public func getLevel() -> Int {
         return self.level - 1
-    }
-}
-
-extension Data {
-    init(reading input: InputStream) throws {
-        self.init()
-        input.open()
-        defer {
-            input.close()
-        }
-        let bufferSize: Int = 1024
-        let buffer = UnsafeMutablePointer<UInt8>.allocate(capacity: bufferSize)
-        defer {
-            buffer.deallocate()
-        }
-        while input.hasBytesAvailable {
-            let read = input.read(buffer, maxLength: bufferSize)
-            if read < 0 {
-                //Stream error occured
-                print("error")
-                throw input.streamError!
-            } else if read == 0 {
-                break
-            }
-            self.append(buffer, count: read)
-        }
     }
 }
 extension Int {
