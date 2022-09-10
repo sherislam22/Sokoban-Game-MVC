@@ -22,13 +22,10 @@ class Canvas: UIView {
       imageBox = UIImage(named: "box")
       imageGoal = UIImage(named: "goal")
       imageWhiteplace = UIImage(named: "whiteBox")
-        drawBoard()
     }
-    required init?(coder aCoder: NSCoder) {
-        self.desktop = model!.getdesktop()
-        
-        super.init(coder: aCoder)
-        drawBoard()
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     public func updateView() {
         drawBoard()
