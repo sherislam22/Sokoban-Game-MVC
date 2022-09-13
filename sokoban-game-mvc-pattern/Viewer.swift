@@ -6,13 +6,12 @@ class Viewer: UIResponder, UIApplicationDelegate {
     private var controller: Controller?
     public override init() {
         super.init()
-       print("ok")
         controller = Controller(viewer: self)
-        canvas = Canvas(model: controller!.getmodel())
+        let model = controller!.getmodel()
+        canvas = Canvas(model: model)
     }
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         self.window = UIWindow(frame: UIScreen.main.bounds)
-       
         window?.rootViewController = controller
         window?.makeKeyAndVisible()
         window?.addSubview(canvas!)
