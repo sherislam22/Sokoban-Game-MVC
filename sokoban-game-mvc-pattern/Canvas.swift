@@ -13,10 +13,10 @@ class Canvas: UIView {
     private var imageGoal: UIImage!
     private var imageWall: UIImage!
     private var imageWhiteplace: UIImage!
-  init(frame: CGRect, model: Model) {
+  init(model: Model) {
         self.model = model
         self.desktop = model.getdesktop()
-      super.init(frame: frame)
+      super.init(frame: CGRect(x: 0, y: 0, width: 300, height: 300))
       imageGamer = UIImage(named: "hero")
       imageWall = UIImage(named: "Wall")
       imageBox = UIImage(named: "box")

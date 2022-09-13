@@ -1,5 +1,5 @@
 class Model {
-    private let viewer: Controller
+    private let viewer: Viewer
     private var desktop: [[Int]]
     private var IndexX: Int
     private var IndexY: Int
@@ -7,7 +7,7 @@ class Model {
     private var arrayOfIndexies: [[Int]]
     private var drawBlueprint: Bool
     private var stateModel: Bool
-    init(viewer: Controller) {
+    init(viewer: Viewer) {
         self.viewer = viewer
         drawBlueprint = false
         stateModel = true
