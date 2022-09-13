@@ -3,6 +3,6 @@ import UIKit
 class Viewer: UIResponder, UIApplicationDelegate {
     public var window: UIWindow?
     public override init() {
-       
+       print("ok")
     }
 }
