@@ -22,18 +22,7 @@ public class Controller: UIViewController {
     }
     @objc public func getfunc() {
         model.getlevel(level: 1)
-        pickerView()
     }
-    
-    private func pickerView() {
-        let UIPicker: UIPickerView = UIPickerView()
-        UIPicker.delegate = self
-        UIPicker.dataSource = self
-        UIPicker.contentMode = .scaleToFill
-        self.view.addSubview(UIPicker)
-        UIPicker.center = self.view.center
-    }
-    
     public override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let touch = touches.first {
             let position = touch.location(in: view)
@@ -80,18 +69,5 @@ public class Controller: UIViewController {
             return
         }
         model.move(direction: direction)
-    }
-}
-
-extension Controller: UIPickerViewDelegate, UIPickerViewDataSource {
-    public func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return dataArray.count
-    }
-    public func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        let row = dataArray[row]
-        return String(row)
     }
 }

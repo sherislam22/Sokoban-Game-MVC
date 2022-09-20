@@ -10,11 +10,9 @@
 		6A25E16D28CB7A0B00A51D8F /* level4.sok in Resources */ = {isa = PBXBuildFile; fileRef = 6A25E16C28CB7A0B00A51D8F /* level4.sok */; };
 		6A25E16F28CBD1A100A51D8F /* level5.sok in Resources */ = {isa = PBXBuildFile; fileRef = 6A25E16E28CBD1A100A51D8F /* level5.sok */; };
 		6A25E17128CBD2B900A51D8F /* level6.sok in Resources */ = {isa = PBXBuildFile; fileRef = 6A25E17028CBD2B900A51D8F /* level6.sok */; };
-		6A80EC7228CC654D00CBAC8C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6A80EC7128CC654D00CBAC8C /* Main.storyboard */; };
 		6AB1D41128D5F3FB00F457AC /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB1D41028D5F3FB00F457AC /* Server.swift */; };
 		6AE5D07C28C7CB85005EC9DB /* Viewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE5D07B28C7CB85005EC9DB /* Viewer.swift */; };
 		6AE5D08528C7CB85005EC9DB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6AE5D08428C7CB85005EC9DB /* Assets.xcassets */; };
-		6AE5D08828C7CB85005EC9DB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6AE5D08628C7CB85005EC9DB /* LaunchScreen.storyboard */; };
 		6AE5D09028C7CBD2005EC9DB /* Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE5D08F28C7CBD2005EC9DB /* Controller.swift */; };
 		6AE5D09228C7CBD8005EC9DB /* Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE5D09128C7CBD8005EC9DB /* Canvas.swift */; };
 		6AE5D09428C7CBDC005EC9DB /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE5D09328C7CBDC005EC9DB /* Model.swift */; };
@@ -25,12 +23,10 @@
 		6A25E16C28CB7A0B00A51D8F /* level4.sok */ = {isa = PBXFileReference; lastKnownFileType = text; path = level4.sok; sourceTree = "<group>"; };
 		6A25E16E28CBD1A100A51D8F /* level5.sok */ = {isa = PBXFileReference; lastKnownFileType = text; path = level5.sok; sourceTree = "<group>"; };
 		6A25E17028CBD2B900A51D8F /* level6.sok */ = {isa = PBXFileReference; lastKnownFileType = text; path = level6.sok; sourceTree = "<group>"; };
-		6A80EC7128CC654D00CBAC8C /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		6AB1D41028D5F3FB00F457AC /* Server.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Server.swift; sourceTree = "<group>"; };
 		6AE5D07828C7CB85005EC9DB /* sokoban-game-mvc-pattern.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "sokoban-game-mvc-pattern.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6AE5D07B28C7CB85005EC9DB /* Viewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Viewer.swift; sourceTree = "<group>"; };
 		6AE5D08428C7CB85005EC9DB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		6AE5D08728C7CB85005EC9DB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6AE5D08928C7CB85005EC9DB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6AE5D08F28C7CBD2005EC9DB /* Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Controller.swift; sourceTree = "<group>"; };
 		6AE5D09128C7CBD8005EC9DB /* Canvas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Canvas.swift; sourceTree = "<group>"; };
@@ -86,8 +82,6 @@
 				6AE5D09128C7CBD8005EC9DB /* Canvas.swift */,
 				6A25E16B28CB79E600A51D8F /* Levels */,
 				6AE5D08428C7CB85005EC9DB /* Assets.xcassets */,
-				6A80EC7128CC654D00CBAC8C /* Main.storyboard */,
-				6AE5D08628C7CB85005EC9DB /* LaunchScreen.storyboard */,
 				6AE5D08928C7CB85005EC9DB /* Info.plist */,
 			);
 			path = "sokoban-game-mvc-pattern";
@@ -152,9 +146,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6A25E17128CBD2B900A51D8F /* level6.sok in Resources */,
-				6AE5D08828C7CB85005EC9DB /* LaunchScreen.storyboard in Resources */,
 				6A25E16D28CB7A0B00A51D8F /* level4.sok in Resources */,
-				6A80EC7228CC654D00CBAC8C /* Main.storyboard in Resources */,
 				6A25E16F28CBD1A100A51D8F /* level5.sok in Resources */,
 				6AE5D08528C7CB85005EC9DB /* Assets.xcassets in Resources */,
 			);
@@ -177,17 +169,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		6AE5D08628C7CB85005EC9DB /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6AE5D08728C7CB85005EC9DB /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		6AE5D08A28C7CB85005EC9DB /* Debug */ = {

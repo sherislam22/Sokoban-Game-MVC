@@ -1,8 +1,5 @@
 import Foundation
 public class Levels {
-    
-    
-    
     private var level: Int
     private var prefixFileName: String
     private var endFileName: String
