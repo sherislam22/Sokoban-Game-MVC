@@ -48,9 +48,6 @@ public class Server: NSObject {
         let data1 = Data(bytes: buffer, count: input)
         return String(data: data1, encoding: .utf8)
     }
-    
-    
-    
     func stopChatSession() {
         inputstream.close()
         outputstream.close()
@@ -61,7 +58,6 @@ extension Server: StreamDelegate {
         switch eventCode {
         case .hasBytesAvailable:
             print("new message received")
-//            readAvailableBytes(stream: aStream as! InputStream)
         case .endEncountered:
             print("new message received")
             stopChatSession()
@@ -72,38 +68,5 @@ extension Server: StreamDelegate {
         default:
             print("some other event...")
         }
-        
-//func readAvailableBytes(stream: InputStream) {
-//            let buffer = UnsafeMutablePointer<UInt8>.allocate(capacity: maxReadLength)
-//            do {
-//                while stream.hasBytesAvailable {
-//                    let numberOfBytesRead = inputstream.read(buffer, maxLength: maxReadLength)
-//
-//                    if numberOfBytesRead < 0, let error = stream.streamError {
-//                        print(error)
-//                        break
-//
-//
-//                    }
-//                        guard let message = processedMessageString(buffer: buffer, length: numberOfBytesRead) else { return  }
-//                    delegate?.recieve(message:  message)
-//                }
-//            }
-//        }
-//
-//        func processedMessageString(buffer: UnsafeMutablePointer<UInt8>,
-//                                    length: Int) -> String? {
-//            //1
-//            guard
-//                let message = String(
-//                    bytesNoCopy: buffer,
-//                    length: length,
-//                    encoding: .utf8,
-//                    freeWhenDone: true)
-//            else {
-//                return nil
-//            }
-//            return message
-//        }
     }
 }
