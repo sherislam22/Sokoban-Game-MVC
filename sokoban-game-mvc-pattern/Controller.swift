@@ -1,34 +1,56 @@
 import UIKit
-class Controller: UIViewController {
+public class Controller: UIViewController {
     private var model: Model!
     private var x1: Int!
     private var y1: Int!
-    required init?(coder: NSCoder) {
+    private let dataArray: [Int] = [1,2,3,4,5,6]
+    public required init?(coder: NSCoder) {
         print("im viewer root")
         super.init(coder: coder)
     }
     
-    init(viewer: Viewer) {
+    public init(viewer: Viewer) {
         self.model = Model(viewer: viewer)
         x1 = 0
         y1 = 0
         super.init(nibName: nil, bundle: nil)
-    }
-    override func viewDidLoad() {
-        super.viewDidLoad()
         view.backgroundColor = UIColor(patternImage: UIImage(named: "bg-1")!)
-
+        view.contentMode = .scaleToFill
     }
-    func getmodel() -> Model {
+    public func getmodel() -> Model {
         return model
     }
+    @objc public func getfunc() {
+        model.getlevel(level: 1)
+        pickerView()
+    }
     
+    private func pickerView() {
+        let UIPicker: UIPickerView = UIPickerView()
+        UIPicker.delegate = self
+        UIPicker.dataSource = self
+        UIPicker.contentMode = .scaleToFill
+        self.view.addSubview(UIPicker)
+        UIPicker.center = self.view.center
+    }
     
-    
+    public override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if let touch = touches.first {
+            let position = touch.location(in: view)
+            movePressed(position: position)
+        }
+    }
+    public override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if let touch = touches.first {
+            let position = touch.location(in: view)
+            mouseReleased(position: position)
+        }
+        
+    }
     public func movePressed(position: CGPoint) {
         x1 = Int(position.x)
         y1 = Int(position.y)
-       
+        
     }
     
     public func mouseReleased(position: CGPoint) {
@@ -61,3 +83,15 @@ class Controller: UIViewController {
     }
 }
 
+extension Controller: UIPickerViewDelegate, UIPickerViewDataSource {
+    public func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return dataArray.count
+    }
+    public func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        let row = dataArray[row]
+        return String(row)
+    }
+}

@@ -1,10 +1,10 @@
 import Foundation
 import UIKit
 
-class Canvas: UIView {
+public class Canvas: UIView {
     private var model: Model?
     private var desktop: [[Int]]
-    private let start = 0
+    private var start = 0
     private var didSetupConstraints = false
     private var cellSide  = 29
     private let offset = 0
@@ -13,15 +13,16 @@ class Canvas: UIView {
     private var imageGoal: UIImage!
     private var imageWall: UIImage!
     private var imageWhiteplace: UIImage!
-  init(model: Model) {
+    public init(frame: CGRect, model: Model) {
         self.model = model
         self.desktop = model.getdesktop()
-      super.init(frame: CGRect(x: 0, y: 0, width: 300, height: 300))
-      imageGamer = UIImage(named: "hero")
-      imageWall = UIImage(named: "Wall")
-      imageBox = UIImage(named: "box")
-      imageGoal = UIImage(named: "goal")
-      imageWhiteplace = UIImage(named: "whiteBox")
+        super.init(frame: frame)
+        imageGamer = UIImage(named: "hero")
+        imageWall = UIImage(named: "Wall")
+        imageBox = UIImage(named: "box")
+        imageGoal = UIImage(named: "goal")
+        imageWhiteplace = UIImage(named: "whiteBox")
+        backgroundColor = .clear
     }
     
     required init?(coder: NSCoder) {
@@ -30,15 +31,19 @@ class Canvas: UIView {
     public func updateView() {
         drawBoard()
     }
-    override func draw(_ rect: CGRect) {
-        self.desktop = model!.getdesktop()
+    public override func draw(_ rect: CGRect) {
+        desktop = model!.getdesktop()
         drawBoard()
-        backgroundColor = .clear
-        }
+    }
     func drawBoard() {
+        let col: CGFloat =  CGFloat(desktop.count)
+        let fitWidth = frame.height / col
+        let row: CGFloat = CGFloat(desktop.count)
+        let fitHeight = frame.width / row
+        cellSide = Int(min(fitWidth, fitHeight))
+        start = Int(CGFloat(frame.width - CGFloat(cellSide) * col) / 2)
         var x = start
-        var y = start
-       
+        var y = Int(CGFloat(frame.height - CGFloat(cellSide) * row) / 2)
         for i in 0..<desktop.count {
             for j in 0..<desktop[i].count {
                 if desktop[i][j] == 1 {
@@ -60,8 +65,8 @@ class Canvas: UIView {
             }
             y = y + cellSide + offset
             x = start
-                
-            }
+            
+        }
     }
 }
 

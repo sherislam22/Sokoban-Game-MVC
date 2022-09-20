@@ -1,13 +1,17 @@
-import CoreFoundation
 import Foundation
-class Levels {
+public class Levels {
+    
+    
+    
     private var level: Int
     private var prefixFileName: String
     private var endFileName: String
-    init() {
+    private var levelAtServer: [[Int]]
+    public init() {
         self.level = 1
         prefixFileName = "level"
         endFileName = ".sok"
+        levelAtServer = []
     }
     
     public func nextlevel() -> [[Int]] {
@@ -20,6 +24,9 @@ class Levels {
         case 5: desktop = loadLevelFromFile(filename: "\(prefixFileName)\(level)\(endFileName)")
         case 6:
             desktop = loadLevelFromFile(filename: "\(prefixFileName)\(level)\(endFileName)")
+        case 7: desktop = loadFileFromServer(filename: "\(prefixFileName)\(level)")
+        case 8: desktop = loadFileFromServer(filename: "\(prefixFileName)\(level)")
+        case 9: desktop = loadFileFromServer(filename: "\(prefixFileName)\(level)")
         default:
             level = 1
             desktop = getFirstLevel()
@@ -27,18 +34,17 @@ class Levels {
         level = level + 1
         return desktop
     }
-    
     private func getFirstLevel() -> [[Int]] {
         let array: [[Int]] = [
-        [2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
-        [2, 0, 0, 0, 0, 0, 0, 0, 0, 2],
-        [2, 0, 0, 0, 0, 0, 0, 3, 4, 2],
-        [2, 0, 0, 0, 0, 0, 0, 0, 0, 2],
-        [2, 0, 0, 1, 0, 0, 0, 0, 0, 2],
-        [2, 0, 0, 0, 0, 0, 0, 0, 0, 2],
-        [2, 0, 0, 0, 0, 0, 0, 0, 0, 2],
-        [2, 0, 0, 0, 0, 0, 0, 0, 0, 2],
-        [2, 2, 2, 2, 2, 2, 2, 2, 2, 2]]
+            [2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
+            [2, 0, 0, 0, 0, 0, 0, 0, 0, 2],
+            [2, 0, 0, 0, 0, 0, 0, 3, 4, 2],
+            [2, 0, 0, 0, 0, 0, 0, 0, 0, 2],
+            [2, 0, 0, 1, 0, 0, 0, 0, 0, 2],
+            [2, 0, 0, 0, 0, 0, 0, 0, 0, 2],
+            [2, 0, 0, 0, 0, 0, 0, 0, 0, 2],
+            [2, 0, 0, 0, 0, 0, 0, 0, 0, 2],
+            [2, 2, 2, 2, 2, 2, 2, 2, 2, 2]]
         
         return array
     }
@@ -73,32 +79,40 @@ class Levels {
     
     private func loadLevelFromFile(filename: String) -> [[Int]] {
         var text: String = ""
-            do {
+        do {
             let url = Bundle.main.url(forAuxiliaryExecutable: filename)?.absoluteURL
-                let attributes = try? FileManager.default.attributesOfItem(atPath: url!.path)
-                let fileSize: Int? = attributes![.size] as? Int
-                var array: [Character] = Array(repeating: "0", count: fileSize!)
-                let filehandle = FileHandle(forReadingAtPath: url!.path)
-                var index = 0
-                let data = try? filehandle?.read(upToCount: fileSize!)
-                for i in data! {
-                    let unicode: Int = Int(i)
-                    // преобразование unicode в символ
-                    let symbol: Character = unicode.charAt
-                    if symbol.isWholeNumber || symbol == "\n" {
-                        array[index] = symbol
-                        index = index + 1
-                    }
-                    else {
-                        array.remove(at: index)
-                    }
+            let attributes = try? FileManager.default.attributesOfItem(atPath: url!.path)
+            let fileSize: Int? = attributes![.size] as? Int
+            var array: [Character] = Array(repeating: "0", count: fileSize!)
+            let filehandle = FileHandle(forReadingAtPath: url!.path)
+            var index = 0
+            let data = try? filehandle?.read(upToCount: fileSize!)
+            for i in data! {
+                let unicode: Int = Int(i)
+                // преобразование unicode в символ
+                let symbol: Character = unicode.charAt
+                if symbol.isWholeNumber || symbol == "\n" {
+                    array[index] = symbol
+                    index = index + 1
                 }
-                text = String(array)
-                array.removeAll()
+                else {
+                    array.remove(at: index)
+                }
             }
+            text = String(array)
+            array.removeAll()
+        }
         return convert(text: text)
     }
-
+    
+    private func loadFileFromServer(filename: String) -> [[Int]] {
+        let server = Server(ip: "localhost", port: 8888)
+        let answer = server.sendMessage(message: filename)
+        server.stream(.init(), handle: .hasBytesAvailable)
+        print(answer ?? "eroor file")
+        return convert(text: answer ?? "11")
+    }
+    
     private func convert(text: String) -> [[Int]] {
         var row: Int = 0
         for i in text {
@@ -133,8 +147,8 @@ class Levels {
         }
         return array
     }
-    public func getLevel() -> Int {
-        return self.level - 1
+    public func getLevel(level: Int) {
+        self.level = level
     }
 }
 extension Int {
@@ -142,3 +156,4 @@ extension Int {
         return Character(UnicodeScalar(self)!)
     }
 }
+

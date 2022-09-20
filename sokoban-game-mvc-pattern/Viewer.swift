@@ -1,41 +1,46 @@
 import UIKit
 @main
-class Viewer: UIResponder, UIApplicationDelegate {
+public class Viewer: UIResponder, UIApplicationDelegate {
     public var window: UIWindow?
     private var canvas: Canvas?
     private var controller: Controller?
     public override init() {
+        let frame: CGRect = UIScreen.main.bounds
+        self.window = UIWindow(frame: frame)
         super.init()
         controller = Controller(viewer: self)
         let model = controller!.getmodel()
-        canvas = Canvas(model: model)
-    }
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-        self.window = UIWindow(frame: UIScreen.main.bounds)
+        canvas = Canvas( frame: frame, model: model)
         window?.rootViewController = controller
+        window?.contentMode = .scaleToFill
         window?.makeKeyAndVisible()
-        window?.addSubview(canvas!)
-        canvas?.center = window!.center
-        return true
-    }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if let touch = touches.first {
-               let position = touch.location(in: window)
-            controller?.movePressed(position: position)
-           }
-    }
-    
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if let touch = touches.first {
-               let position = touch.location(in: window)
-            controller?.mouseReleased(position: position)
-           }
-        
+        controller?.view.addSubview(canvas!)
+        levelsmenu() 
     }
     func update() {
         canvas?.setNeedsDisplay()
     }
+    
+    private func levelsmenu() {
+        let button: UIButton = {
+           let button = UIButton()
+            button.translatesAutoresizingMaskIntoConstraints = false
+            button.setTitle("Levels", for: .normal)
+            button.backgroundColor = .red
+            button.layer.cornerRadius = 10
+            return button
+        }()
+        controller?.view.addSubview(button)
+        NSLayoutConstraint.activate([
+            button.centerXAnchor.constraint(equalTo: (controller?.view.centerXAnchor)!),
+            button.topAnchor.constraint(equalTo: (controller?.view.topAnchor)!,constant: 50),
+            button.widthAnchor.constraint(equalToConstant: 100),
+            button.heightAnchor.constraint(equalToConstant: 50)
+        ])
+        button.addTarget(self, action: #selector(controller?.getfunc), for: .touchUpInside)
+    }
+
+    
     func SuccesAlert() {
         let alert = UIAlertController(title: "Succes", message: "Succes level", preferredStyle: .alert)
         let action = UIAlertAction(title: "Next", style: .default)

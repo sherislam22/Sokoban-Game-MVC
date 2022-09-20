@@ -1,4 +1,5 @@
-class Model {
+import Foundation
+public class Model {
     private let viewer: Viewer
     private var desktop: [[Int]]
     private var IndexX: Int
@@ -7,7 +8,7 @@ class Model {
     private var arrayOfIndexies: [[Int]]
     private var drawBlueprint: Bool
     private var stateModel: Bool
-    init(viewer: Viewer) {
+    public init(viewer: Viewer) {
         self.viewer = viewer
         drawBlueprint = false
         stateModel = true
@@ -17,6 +18,7 @@ class Model {
         IndexX = 0
         IndexY = 0
         initialization()
+    
     }
     
 private func initialization() {
@@ -68,7 +70,9 @@ public func move(direction: String) {
         won()
         viewer.update()
     }
-    
+    public func getlevel(level: Int) {
+        levels.getLevel(level: level)
+    }
 private func won() {
         var won: Bool = true
         for j in 0..<arrayOfIndexies[0].count {
