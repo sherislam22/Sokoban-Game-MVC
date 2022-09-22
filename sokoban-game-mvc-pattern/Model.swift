@@ -8,6 +8,7 @@ public class Model {
     private var arrayOfIndexies: [[Int]]
     private var drawBlueprint: Bool
     private var stateModel: Bool
+    private var playerFaceDirection: PlayerDirection
     public init(viewer: Viewer) {
         self.viewer = viewer
         drawBlueprint = false
@@ -17,6 +18,7 @@ public class Model {
         arrayOfIndexies = []
         IndexX = 0
         IndexY = 0
+        playerFaceDirection = .down
         initialization()
     
     }
@@ -42,7 +44,7 @@ private func initialization() {
        }
        if(countOne != 1 || (countThree != countFour) || countThree <= 0 || countFour <= 0) {
           stateModel = false
-          return
+           levels.getLevel()
        }
         arrayOfIndexies = Array(repeating: Array(repeating: 2, count: countFour), count: 2)
         var a = 0
@@ -57,6 +59,9 @@ private func initialization() {
               }
                                 
     }
+    public func checkStateModel() -> Bool {
+        return stateModel
+    }
 public func move(direction: String) {
         switch direction {
         case "Right": MoveRight()
@@ -69,9 +74,6 @@ public func move(direction: String) {
         check()
         won()
         viewer.update()
-    }
-    public func getlevel(level: Int) {
-        levels.getLevel(level: level)
     }
 private func won() {
         var won: Bool = true
@@ -89,6 +91,11 @@ private func won() {
             viewer.update()
         }
 
+    }
+    public func updateModel() {
+        levels.getLevel()
+        initialization()
+        viewer.update()
     }
 
 private func check() {
@@ -167,6 +174,7 @@ public func MoveRight() {
             }
         }
     desktop[IndexX][IndexY] = 1
+    playerFaceDirection = .rigth
     }
     
 public func MoveLeft() {
@@ -177,6 +185,7 @@ public func MoveLeft() {
             }
         }
     desktop[IndexX][IndexY] = 1
+    playerFaceDirection = .left
     }
     
 public func MoveTop() {
@@ -187,6 +196,7 @@ public func MoveTop() {
             }
         }
     desktop[IndexX][IndexY] = 1
+    playerFaceDirection = .up
     }
 
 public func MoveDown() {
@@ -197,6 +207,13 @@ public func MoveDown() {
             }
         }
     desktop[IndexX][IndexY] = 1
-
+    playerFaceDirection = .down
     }
+    
+func getplayerfacedirection() -> PlayerDirection {
+        return playerFaceDirection
+    }
+//    func getplayerInGround() -> Bool {
+//        return playerInGround
+//    }
 }

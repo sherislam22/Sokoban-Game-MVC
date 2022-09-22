@@ -8,6 +8,7 @@ public class Levels {
         self.level = 1
         prefixFileName = "level"
         endFileName = ".sok"
+        
         levelAtServer = []
     }
     
@@ -21,9 +22,9 @@ public class Levels {
         case 5: desktop = loadLevelFromFile(filename: "\(prefixFileName)\(level)\(endFileName)")
         case 6:
             desktop = loadLevelFromFile(filename: "\(prefixFileName)\(level)\(endFileName)")
-        case 7: desktop = loadFileFromServer(filename: "\(prefixFileName)\(level)")
-        case 8: desktop = loadFileFromServer(filename: "\(prefixFileName)\(level)")
-        case 9: desktop = loadFileFromServer(filename: "\(prefixFileName)\(level)")
+        case 7: desktop = loadTextFromServer(filename: "\(prefixFileName)\(level)")
+        case 8: desktop = loadTextFromServer(filename: "\(prefixFileName)\(level)")
+        case 9: desktop = loadTextFromServer(filename: "\(prefixFileName)\(level)")
         default:
             level = 1
             desktop = getFirstLevel()
@@ -37,8 +38,8 @@ public class Levels {
             [2, 0, 0, 0, 0, 0, 0, 0, 0, 2],
             [2, 0, 0, 0, 0, 0, 0, 3, 4, 2],
             [2, 0, 0, 0, 0, 0, 0, 0, 0, 2],
-            [2, 0, 0, 1, 0, 0, 0, 0, 0, 2],
             [2, 0, 0, 0, 0, 0, 0, 0, 0, 2],
+            [2, 0, 0, 1, 0, 0, 0, 0, 0, 2],
             [2, 0, 0, 0, 0, 0, 0, 0, 0, 2],
             [2, 0, 0, 0, 0, 0, 0, 0, 0, 2],
             [2, 2, 2, 2, 2, 2, 2, 2, 2, 2]]
@@ -102,13 +103,14 @@ public class Levels {
         return convert(text: text)
     }
     
-    private func loadFileFromServer(filename: String) -> [[Int]] {
-        let server = Server(ip: "localhost", port: 8888)
-        let answer = server.sendMessage(message: filename)
-        server.stream(.init(), handle: .hasBytesAvailable)
-        print(answer ?? "eroor file")
-        return convert(text: answer ?? "11")
+    private func  loadTextFromServer(filename: String) -> [[Int]] {
+        let server = Client(host: "194.152.37.7", port: 5546)
+        server.start()
+        server.connection.send(data: filename.data(using: .utf8)!)
+        let answer = server.recieve()
+        return convert(text: answer)
     }
+
     
     private func convert(text: String) -> [[Int]] {
         var row: Int = 0
@@ -144,8 +146,8 @@ public class Levels {
         }
         return array
     }
-    public func getLevel(level: Int) {
-        self.level = level
+    public func getLevel() {
+        self.level = 1
     }
 }
 extension Int {

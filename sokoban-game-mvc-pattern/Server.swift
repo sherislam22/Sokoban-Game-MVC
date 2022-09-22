@@ -1,72 +1,38 @@
+
 import Foundation
-
-public protocol serverDelegate: AnyObject {
-    func recieve(message: String)
-}
-
-public class Server: NSObject {
-    private var inputstream: InputStream
-    private var outputstream: OutputStream
-    public var delegate: serverDelegate?
-    private let maxReadLength: Int = 4096
-    private var ip: String
-    private var port: Int
-    public init(ip: String, port: Int) {
-        self.ip = ip
-        self.port = port
-        var readStream: Unmanaged<CFReadStream>?
-        var writeStream: Unmanaged<CFWriteStream>?
-        CFStreamCreatePairWithSocketToHost(kCFAllocatorDefault,
-                                           self.ip as CFString,
-                                           UInt32(self.port),
-                                           &readStream,
-                                           &writeStream)
-        
-        inputstream = readStream!.takeRetainedValue()
-        outputstream = writeStream!.takeRetainedValue()
-        super.init()
-        inputstream.delegate = self
-        
-        inputstream.schedule(in: .current, forMode: .common)
-        outputstream.schedule(in: .current, forMode: .common)
-        
-        inputstream.open()
-        outputstream.open()
-        
+import Network
+class Client {
+    let connection: ClientConnection
+    let host: NWEndpoint.Host
+    let port: NWEndpoint.Port
+    
+    init(host: String, port: UInt16) {
+        self.host = NWEndpoint.Host(host)
+        self.port = NWEndpoint.Port(rawValue: port)!
+        let nwConnection = NWConnection(host: self.host, port: self.port, using: .tcp)
+        connection = ClientConnection(nwConnection: nwConnection)
     }
-    public func sendMessage(message: String) -> String? {
-        let data = "\(message)".data(using: .utf8)!
-        let buffer = UnsafeMutablePointer<UInt8>.allocate(capacity: maxReadLength)
-        data.withUnsafeBytes {
-            guard let pointer = $0.baseAddress?.assumingMemoryBound(to: UInt8.self) else {
-                print("Error joining chat")
-                return
-            }
-            outputstream.write(pointer, maxLength: data.count)
-        }
-        let input = inputstream.read(buffer, maxLength: maxReadLength)
-        let data1 = Data(bytes: buffer, count: input)
-        return String(data: data1, encoding: .utf8)
+    func start() {
+        connection.didStopCallback = didStopCallback(error:)
+        connection.start()
     }
-    func stopChatSession() {
-        inputstream.close()
-        outputstream.close()
+    
+    func stop() {
+        connection.stop()
     }
-}
-extension Server: StreamDelegate {
-    public func stream(_ aStream: Stream, handle eventCode: Stream.Event) {
-        switch eventCode {
-        case .hasBytesAvailable:
-            print("new message received")
-        case .endEncountered:
-            print("new message received")
-            stopChatSession()
-        case .errorOccurred:
-            print("error occurred")
-        case .hasSpaceAvailable:
-            print("has space available")
-        default:
-            print("some other event...")
+    
+    func send(data: Data) {
+        connection.send(data: data)
+    }
+    public func recieve() -> String {
+        return connection.recieve()
+    }
+    
+    func didStopCallback(error: Error?) {
+        if error == nil {
+            exit(EXIT_SUCCESS)
+        } else {
+            exit(EXIT_FAILURE)
         }
     }
 }

@@ -14,14 +14,10 @@ public class Controller: UIViewController {
         x1 = 0
         y1 = 0
         super.init(nibName: nil, bundle: nil)
-        view.backgroundColor = UIColor(patternImage: UIImage(named: "bg-1")!)
         view.contentMode = .scaleToFill
     }
     public func getmodel() -> Model {
         return model
-    }
-    @objc public func getfunc() {
-        model.getlevel(level: 1)
     }
     public override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let touch = touches.first {
