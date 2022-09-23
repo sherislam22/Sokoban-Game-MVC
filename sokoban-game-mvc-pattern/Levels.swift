@@ -1,18 +1,16 @@
 import Foundation
 public class Levels {
-    private var level: Int
     private var prefixFileName: String
     private var endFileName: String
     private var levelAtServer: [[Int]]
     public init() {
-        self.level = 1
         prefixFileName = "level"
         endFileName = ".sok"
         
         levelAtServer = []
     }
     
-    public func nextlevel() -> [[Int]] {
+    public func nextlevel(level: Int) -> [[Int]] {
         var desktop: [[Int]]
         switch level {
         case 1 : desktop = getFirstLevel()
@@ -26,10 +24,8 @@ public class Levels {
         case 8: desktop = loadTextFromServer(filename: "\(prefixFileName)\(level)")
         case 9: desktop = loadTextFromServer(filename: "\(prefixFileName)\(level)")
         default:
-            level = 1
             desktop = getFirstLevel()
         }
-        level = level + 1
         return desktop
     }
     private func getFirstLevel() -> [[Int]] {
@@ -104,11 +100,17 @@ public class Levels {
     }
     
     private func  loadTextFromServer(filename: String) -> [[Int]] {
-        let server = Client(host: "194.152.37.7", port: 5546)
-        server.start()
-        server.connection.send(data: filename.data(using: .utf8)!)
-        let answer = server.recieve()
-        return convert(text: answer)
+        let server = Server()
+        server.connect()
+        server.write(level: filename)
+        let answer = server.readAvailableBytes()
+        if answer != "error" || server.serverError() {
+            return convert(text: answer)
+        } else {
+            server.disconnect()
+            return []
+            
+        }
     }
 
     
@@ -145,9 +147,6 @@ public class Levels {
             }
         }
         return array
-    }
-    public func getLevel() {
-        self.level = 1
     }
 }
 extension Int {

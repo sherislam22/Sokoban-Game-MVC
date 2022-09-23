@@ -8,12 +8,14 @@ public class Model {
     private var arrayOfIndexies: [[Int]]
     private var drawBlueprint: Bool
     private var stateModel: Bool
+    private var level: Int
     private var playerFaceDirection: PlayerDirection
     public init(viewer: Viewer) {
         self.viewer = viewer
         drawBlueprint = false
         stateModel = true
         levels = Levels()
+        level = 6
         desktop = []
         arrayOfIndexies = []
         IndexX = 0
@@ -24,7 +26,7 @@ public class Model {
     }
     
 private func initialization() {
-    desktop = levels.nextlevel()
+    desktop = levels.nextlevel(level: level)
         
         var countOne = 0
         var countThree = 0
@@ -44,7 +46,6 @@ private func initialization() {
        }
        if(countOne != 1 || (countThree != countFour) || countThree <= 0 || countFour <= 0) {
           stateModel = false
-           levels.getLevel()
        }
         arrayOfIndexies = Array(repeating: Array(repeating: 2, count: countFour), count: 2)
         var a = 0
@@ -86,15 +87,16 @@ private func won() {
                     }
                 }
         if won {
+            level = level + 1
             viewer.SuccesAlert()
             initialization()
             viewer.update()
+            
         }
 
     }
-    public func updateModel() {
-        levels.getLevel()
-        initialization()
+    public func selectLevel(level: Int) {
+        self.level = level
         viewer.update()
     }
 
@@ -106,6 +108,9 @@ private func check() {
                     desktop[x][y] = 4;
                  }
               }
+    if level >= 10 {
+        level = 1
+    }
     }
 public func getdesktop() -> [[Int]] {
         return self.desktop

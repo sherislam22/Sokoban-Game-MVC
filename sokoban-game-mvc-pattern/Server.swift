@@ -1,38 +1,76 @@
-
 import Foundation
-import Network
-class Client {
-    let connection: ClientConnection
-    let host: NWEndpoint.Host
-    let port: NWEndpoint.Port
-    
-    init(host: String, port: UInt16) {
-        self.host = NWEndpoint.Host(host)
-        self.port = NWEndpoint.Port(rawValue: port)!
-        let nwConnection = NWConnection(host: self.host, port: self.port, using: .tcp)
-        connection = ClientConnection(nwConnection: nwConnection)
+class Server: NSObject {
+    private let address: String
+    private let port: Int
+    private var inputStream: InputStream!
+    private var outputStream: OutputStream!
+    private let maxReadLength: Int
+    private var serverState: Bool
+    override init() {
+        address = "194.152.37.7"
+        port = 5546
+        maxReadLength = 56842
+        serverState = true
+        Stream.getStreamsToHost(withName: self.address, port: self.port, inputStream: &self.inputStream, outputStream: &self.outputStream)
     }
-    func start() {
-        connection.didStopCallback = didStopCallback(error:)
-        connection.start()
-    }
-    
-    func stop() {
-        connection.stop()
-    }
-    
-    func send(data: Data) {
-        connection.send(data: data)
-    }
-    public func recieve() -> String {
-        return connection.recieve()
-    }
-    
-    func didStopCallback(error: Error?) {
-        if error == nil {
-            exit(EXIT_SUCCESS)
-        } else {
-            exit(EXIT_FAILURE)
+    func connect() {
+        
+        guard let _ = inputStream, let _ = outputStream else {
+            return
         }
+
+        self.inputStream?.schedule(in: RunLoop.current, forMode: RunLoop.Mode.default)
+        self.outputStream?.schedule(in: RunLoop.current, forMode: RunLoop.Mode.default)
+
+        self.inputStream?.open()
+        self.outputStream?.open()
+    }
+    public func serverError() -> Bool {
+        return serverState
+    }
+
+    func disconnect() {
+        if let stream = self.inputStream {
+            stream.close()
+            stream.remove(from: RunLoop.current, forMode: .common)
+        }
+        if let stream = self.outputStream {
+            stream.close()
+            stream.remove(from: RunLoop.current, forMode: .common)
+        }
+        self.inputStream = nil
+        self.outputStream = nil
+    }
+
+    func write(level: String) {
+        let data = level.data(using: .utf8)!
+                let nsdata = NSData(data: data).bytes
+                outputStream.write(nsdata, maxLength: data.count)
+    }
+
+    func readAvailableBytes() -> String {
+        let buffer = UnsafeMutablePointer<UInt8>.allocate(capacity: maxReadLength)
+        let read = inputStream.read(buffer, maxLength: maxReadLength)
+                if read != -1 {
+                    let data = Data(bytes: buffer, count: read)
+                    let answer = String(data: data, encoding: .utf8)
+                    return answer ?? "error"
+                }
+        buffer.deallocate()
+        return ""
+    }
+}
+extension Server: StreamDelegate {
+    func stream(_ aStream: Stream, handle eventCode: Stream.Event) {
+        switch eventCode {
+        case .errorOccurred:
+            serverState = false
+            disconnect()
+        case .openCompleted:
+            serverState = true
+        default:
+            serverState = true
+        }
+    
     }
 }

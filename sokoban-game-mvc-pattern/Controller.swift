@@ -15,7 +15,12 @@ public class Controller: UIViewController {
         y1 = 0
         super.init(nibName: nil, bundle: nil)
         view.contentMode = .scaleToFill
+        view.backgroundColor = UIColor(patternImage: UIImage(named: "bg")!)
     }
+    private func selectLevel(level: Int) {
+        model.selectLevel(level: level)
+    }
+    
     public func getmodel() -> Model {
         return model
     }
