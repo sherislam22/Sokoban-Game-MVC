@@ -6,7 +6,6 @@ public class Levels {
     public init() {
         prefixFileName = "level"
         endFileName = ".sok"
-        
         levelAtServer = []
     }
     
@@ -100,16 +99,21 @@ public class Levels {
     }
     
     private func  loadTextFromServer(filename: String) -> [[Int]] {
+       
         let server = Server()
         server.connect()
         server.write(level: filename)
-        let answer = server.readAvailableBytes()
-        if answer != "error" || server.serverError() {
-            return convert(text: answer)
-        } else {
-            server.disconnect()
+        if server.getStatus() {
+            let answer = server.readAvailableBytes()
+            if answer != "error" {
+                return convert(text: answer)
+            } else {
+                return []
+            }
+
+        }
+        else {
             return []
-            
         }
     }
 
@@ -154,4 +158,3 @@ extension Int {
         return Character(UnicodeScalar(self)!)
     }
 }
-
