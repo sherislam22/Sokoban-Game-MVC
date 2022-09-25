@@ -15,7 +15,7 @@ public class Model {
         drawBlueprint = false
         stateModel = true
         levels = Levels()
-        level = 6
+        level = 1
         desktop = []
         arrayOfIndexies = []
         IndexX = 0
@@ -97,6 +97,7 @@ private func won() {
     }
     public func selectLevel(level: Int) {
         self.level = level
+        initialization()
         viewer.update()
     }
 
