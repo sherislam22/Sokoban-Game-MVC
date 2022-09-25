@@ -100,6 +100,10 @@ private func won() {
         initialization()
         viewer.update()
     }
+    public func restartLevel() {
+        initialization()
+        viewer.update()
+    }
 
 private func check() {
         for j in 0..<arrayOfIndexies[0].count {

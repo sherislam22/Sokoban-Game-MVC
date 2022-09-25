@@ -20,7 +20,12 @@ public class Controller: UIViewController {
                                                                    style: .done,
                                                                    target: self,
                                                                    action: #selector(selectLevels))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "RESTART", style: .done, target: self, action: #selector(restartLevel))
+        playSound()
 
+    }
+    @objc private func restartLevel() {
+        model.restartLevel()
     }
     private func selectLevel(level: Int) {
         model.selectLevel(level: level)
