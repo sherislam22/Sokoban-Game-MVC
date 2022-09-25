@@ -11,10 +11,11 @@ public class Viewer: UIResponder, UIApplicationDelegate {
         let frame: CGRect = UIScreen.main.bounds
         self.window = UIWindow(frame: frame)
         canvas = Canvas( frame: frame, model: model)
-        window?.rootViewController = controller
+        controller?.view.addSubview(canvas!)
+        let navigationController = UINavigationController(rootViewController: controller!)
+        window?.rootViewController = navigationController
         window?.contentMode = .scaleToFill
         window?.makeKeyAndVisible()
-        controller?.view.addSubview(canvas!)
     
     }
     func update() {
