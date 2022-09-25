@@ -1,5 +1,6 @@
-class Model {
-    private let viewer: Controller
+import Foundation
+public class Model {
+    private let viewer: Viewer
     private var desktop: [[Int]]
     private var IndexX: Int
     private var IndexY: Int
@@ -7,20 +8,25 @@ class Model {
     private var arrayOfIndexies: [[Int]]
     private var drawBlueprint: Bool
     private var stateModel: Bool
-    init(viewer: Controller) {
+    private var level: Int
+    private var playerFaceDirection: PlayerDirection
+    public init(viewer: Viewer) {
         self.viewer = viewer
         drawBlueprint = false
         stateModel = true
         levels = Levels()
+        level = 6
         desktop = []
         arrayOfIndexies = []
         IndexX = 0
         IndexY = 0
+        playerFaceDirection = .down
         initialization()
+    
     }
     
 private func initialization() {
-    desktop = levels.nextlevel()
+    desktop = levels.nextlevel(level: level)
         
         var countOne = 0
         var countThree = 0
@@ -40,7 +46,6 @@ private func initialization() {
        }
        if(countOne != 1 || (countThree != countFour) || countThree <= 0 || countFour <= 0) {
           stateModel = false
-          return
        }
         arrayOfIndexies = Array(repeating: Array(repeating: 2, count: countFour), count: 2)
         var a = 0
@@ -55,6 +60,9 @@ private func initialization() {
               }
                                 
     }
+    public func checkStateModel() -> Bool {
+        return stateModel
+    }
 public func move(direction: String) {
         switch direction {
         case "Right": MoveRight()
@@ -68,7 +76,6 @@ public func move(direction: String) {
         won()
         viewer.update()
     }
-    
 private func won() {
         var won: Bool = true
         for j in 0..<arrayOfIndexies[0].count {
@@ -80,11 +87,17 @@ private func won() {
                     }
                 }
         if won {
+            level = level + 1
             viewer.SuccesAlert()
             initialization()
             viewer.update()
+            
         }
 
+    }
+    public func selectLevel(level: Int) {
+        self.level = level
+        viewer.update()
     }
 
 private func check() {
@@ -95,6 +108,9 @@ private func check() {
                     desktop[x][y] = 4;
                  }
               }
+    if level >= 10 {
+        level = 1
+    }
     }
 public func getdesktop() -> [[Int]] {
         return self.desktop
@@ -163,6 +179,7 @@ public func MoveRight() {
             }
         }
     desktop[IndexX][IndexY] = 1
+    playerFaceDirection = .rigth
     }
     
 public func MoveLeft() {
@@ -173,6 +190,7 @@ public func MoveLeft() {
             }
         }
     desktop[IndexX][IndexY] = 1
+    playerFaceDirection = .left
     }
     
 public func MoveTop() {
@@ -183,6 +201,7 @@ public func MoveTop() {
             }
         }
     desktop[IndexX][IndexY] = 1
+    playerFaceDirection = .up
     }
 
 public func MoveDown() {
@@ -193,6 +212,13 @@ public func MoveDown() {
             }
         }
     desktop[IndexX][IndexY] = 1
-
+    playerFaceDirection = .down
     }
+    
+func getplayerfacedirection() -> PlayerDirection {
+        return playerFaceDirection
+    }
+//    func getplayerInGround() -> Bool {
+//        return playerInGround
+//    }
 }
