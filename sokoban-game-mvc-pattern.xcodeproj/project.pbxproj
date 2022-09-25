@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6A037ADE28E0B9B900918F58 /* MenuViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A037ADD28E0B9B900918F58 /* MenuViewer.swift */; };
 		6A25E16D28CB7A0B00A51D8F /* level4.sok in Resources */ = {isa = PBXBuildFile; fileRef = 6A25E16C28CB7A0B00A51D8F /* level4.sok */; };
 		6A25E16F28CBD1A100A51D8F /* level5.sok in Resources */ = {isa = PBXBuildFile; fileRef = 6A25E16E28CBD1A100A51D8F /* level5.sok */; };
 		6A25E17128CBD2B900A51D8F /* level6.sok in Resources */ = {isa = PBXBuildFile; fileRef = 6A25E17028CBD2B900A51D8F /* level6.sok */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6A037ADD28E0B9B900918F58 /* MenuViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewer.swift; sourceTree = "<group>"; };
 		6A25E16C28CB7A0B00A51D8F /* level4.sok */ = {isa = PBXFileReference; lastKnownFileType = text; path = level4.sok; sourceTree = "<group>"; };
 		6A25E16E28CBD1A100A51D8F /* level5.sok */ = {isa = PBXFileReference; lastKnownFileType = text; path = level5.sok; sourceTree = "<group>"; };
 		6A25E17028CBD2B900A51D8F /* level6.sok */ = {isa = PBXFileReference; lastKnownFileType = text; path = level6.sok; sourceTree = "<group>"; };
@@ -81,6 +83,7 @@
 				6AB1D41028D5F3FB00F457AC /* Server.swift */,
 				6AE5D09728C7CBF6005EC9DB /* Levels.swift */,
 				6A82004C28DC784900193E23 /* Enum.swift */,
+				6A037ADD28E0B9B900918F58 /* MenuViewer.swift */,
 				6AE5D08F28C7CBD2005EC9DB /* Controller.swift */,
 				6AE5D09128C7CBD8005EC9DB /* Canvas.swift */,
 				6A25E16B28CB79E600A51D8F /* Levels */,
@@ -168,6 +171,7 @@
 			files = (
 				6AE5D09828C7CBF6005EC9DB /* Levels.swift in Sources */,
 				6AE5D07C28C7CB85005EC9DB /* Viewer.swift in Sources */,
+				6A037ADE28E0B9B900918F58 /* MenuViewer.swift in Sources */,
 				6A82004D28DC784900193E23 /* Enum.swift in Sources */,
 				6AE5D09028C7CBD2005EC9DB /* Controller.swift in Sources */,
 				6AE5D09228C7CBD8005EC9DB /* Canvas.swift in Sources */,
