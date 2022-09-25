@@ -16,9 +16,25 @@ public class Controller: UIViewController {
         super.init(nibName: nil, bundle: nil)
         view.contentMode = .scaleToFill
         view.backgroundColor = UIColor(patternImage: UIImage(named: "bg")!)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "list.dash"),
+                                                                   style: .done,
+                                                                   target: self,
+                                                                   action: #selector(selectLevels))
+
     }
     private func selectLevel(level: Int) {
         model.selectLevel(level: level)
+    }
+    
+    @objc private func selectLevels() {
+        let menuController = MenuViewer()
+               menuController.delegate = self
+        menuController.modalPresentationStyle = .popover
+               let popoverPresentationController = menuController.popoverPresentationController
+        popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
+               popoverPresentationController?.delegate = self
+        navigationController!.present(menuController, animated: true)
+
     }
     
     public func getmodel() -> Model {
@@ -70,5 +86,15 @@ public class Controller: UIViewController {
             return
         }
         model.move(direction: direction)
+    }
+}
+extension Controller: UIPopoverPresentationControllerDelegate, MenuDelegate {
+    func returnLevel(level: Int) {
+        selectLevel(level: level)
+        
+    }
+    
+    public func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
+        return .none
     }
 }
