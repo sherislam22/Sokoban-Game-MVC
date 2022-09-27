@@ -27,7 +27,7 @@ public class Model {
     
 private func initialization() {
     desktop = levels.nextlevel(level: level)
-        
+    
         var countOne = 0
         var countThree = 0
         var countFour = 0
@@ -46,6 +46,8 @@ private func initialization() {
        }
        if(countOne != 1 || (countThree != countFour) || countThree <= 0 || countFour <= 0) {
           stateModel = false
+       } else {
+           stateModel = true
        }
         arrayOfIndexies = Array(repeating: Array(repeating: 2, count: countFour), count: 2)
         var a = 0
@@ -58,6 +60,7 @@ private func initialization() {
                     }
                  }
               }
+    
                                 
     }
     public func checkStateModel() -> Bool {
