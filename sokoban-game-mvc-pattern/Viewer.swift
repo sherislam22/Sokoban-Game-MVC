@@ -28,12 +28,12 @@ public class Viewer: UIResponder, UIApplicationDelegate {
         controller?.present(ac, animated: true)
     
     }
-//    public func applicationWillResignActive(_ application: UIApplication) {
-//        stopSound()
-//    }
-//    public func applicationDidBecomeActive(_ application: UIApplication) {
-//        playSound()
-//    }
+    public func applicationWillResignActive(_ application: UIApplication) {
+        stopSound()
+    }
+    public func applicationDidBecomeActive(_ application: UIApplication) {
+        playSound()
+    }
     func SuccesAlert() {
         let alert = UIAlertController(title: "Succes", message: "Succes level", preferredStyle: .alert)
         let action = UIAlertAction(title: "Next", style: .default)
