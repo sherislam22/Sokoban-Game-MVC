@@ -26,6 +26,9 @@ public class Levels {
         default:
             desktop = getFirstLevel()
         }
+        if desktop.isEmpty {
+            desktop = getFirstLevel()
+        }
         return desktop
     }
     private func getFirstLevel() -> [[Int]] {
