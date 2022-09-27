@@ -10,20 +10,20 @@ class Server: NSObject {
         address = "194.152.37.7"
         port = 5546
         maxReadLength = 56842
-        serverState = true
+        serverState = false
         Stream.getStreamsToHost(withName: self.address, port: self.port, inputStream: &self.inputStream, outputStream: &self.outputStream)
     }
     func connect() {
-        
+        serverState = true
         guard let _ = inputStream, let _ = outputStream else {
             return
         }
-
-        self.inputStream?.schedule(in: RunLoop.current, forMode: RunLoop.Mode.default)
-        self.outputStream?.schedule(in: RunLoop.current, forMode: RunLoop.Mode.default)
-
-        self.inputStream?.open()
-        self.outputStream?.open()
+        inputStream.delegate = self
+        outputStream.delegate = self
+        inputStream?.schedule(in: RunLoop.current, forMode: RunLoop.Mode.default)
+        outputStream?.schedule(in: RunLoop.current, forMode: RunLoop.Mode.default)
+        inputStream?.open()
+        outputStream?.open()
     }
     public func serverError() -> Bool {
         return serverState
@@ -49,6 +49,9 @@ class Server: NSObject {
     }
 
     func readAvailableBytes() -> String {
+        if serverState == false {
+            return "error"
+        }
         let buffer = UnsafeMutablePointer<UInt8>.allocate(capacity: maxReadLength)
         let read = inputStream.read(buffer, maxLength: maxReadLength)
                 if read != -1 {
@@ -65,6 +68,7 @@ extension Server: StreamDelegate {
         switch eventCode {
         case .errorOccurred:
             serverState = false
+            print("ERROR DEBUG SERVER FAIL")
             disconnect()
         case .openCompleted:
             serverState = true
