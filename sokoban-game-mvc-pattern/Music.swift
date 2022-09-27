@@ -1,21 +1,21 @@
 import AVFoundation
-var player: AVAudioPlayer!
+var player: AVAudioPlayer?
 
-public func playSound() {
-    guard let path = Bundle.main.path(forResource: "music.mp3", ofType: nil) else {
+func playSound() {
+    guard let path = Bundle.main.path(forResource: "music", ofType:"mp3") else {
         return }
     let url = URL(fileURLWithPath: path)
 
     do {
         player = try AVAudioPlayer(contentsOf: url)
-        player.play()
+        player?.play()
         
     } catch let error {
         print(error.localizedDescription)
     }
 }
 
-public func stopSound() {
+func stopSound() {
     guard let path = Bundle.main.path(forResource: "music", ofType:"mp3") else {
         return }
     let url = URL(fileURLWithPath: path)

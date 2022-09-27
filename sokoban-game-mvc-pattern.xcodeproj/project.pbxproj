@@ -15,7 +15,6 @@
 		6A25E17128CBD2B900A51D8F /* level6.sok in Resources */ = {isa = PBXBuildFile; fileRef = 6A25E17028CBD2B900A51D8F /* level6.sok */; };
 		6A82004D28DC784900193E23 /* Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A82004C28DC784900193E23 /* Enum.swift */; };
 		6AB1D41128D5F3FB00F457AC /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB1D41028D5F3FB00F457AC /* Server.swift */; };
-		6AE0057328E0C447000BA343 /* CheckInternet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE0057228E0C447000BA343 /* CheckInternet.swift */; };
 		6AE5D07C28C7CB85005EC9DB /* Viewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE5D07B28C7CB85005EC9DB /* Viewer.swift */; };
 		6AE5D08528C7CB85005EC9DB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6AE5D08428C7CB85005EC9DB /* Assets.xcassets */; };
 		6AE5D09028C7CBD2005EC9DB /* Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE5D08F28C7CBD2005EC9DB /* Controller.swift */; };
@@ -33,7 +32,6 @@
 		6A25E17028CBD2B900A51D8F /* level6.sok */ = {isa = PBXFileReference; lastKnownFileType = text; path = level6.sok; sourceTree = "<group>"; };
 		6A82004C28DC784900193E23 /* Enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enum.swift; sourceTree = "<group>"; };
 		6AB1D41028D5F3FB00F457AC /* Server.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Server.swift; sourceTree = "<group>"; };
-		6AE0057228E0C447000BA343 /* CheckInternet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInternet.swift; sourceTree = "<group>"; };
 		6AE5D07828C7CB85005EC9DB /* sokoban-game-mvc-pattern.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "sokoban-game-mvc-pattern.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6AE5D07B28C7CB85005EC9DB /* Viewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Viewer.swift; sourceTree = "<group>"; };
 		6AE5D08428C7CB85005EC9DB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -74,17 +72,6 @@
 			path = Levels;
 			sourceTree = "<group>";
 		};
-		6AE0057428E0CF01000BA343 /* Components */ = {
-			isa = PBXGroup;
-			children = (
-				6A037ADD28E0B9B900918F58 /* MenuViewer.swift */,
-				6A82004C28DC784900193E23 /* Enum.swift */,
-				6A037AE328E0C00C00918F58 /* Music.swift */,
-				6AE0057228E0C447000BA343 /* CheckInternet.swift */,
-			);
-			path = Components;
-			sourceTree = "<group>";
-		};
 		6AE5D06F28C7CB85005EC9DB = {
 			isa = PBXGroup;
 			children = (
@@ -108,9 +95,11 @@
 				6AE5D09328C7CBDC005EC9DB /* Model.swift */,
 				6AB1D41028D5F3FB00F457AC /* Server.swift */,
 				6AE5D09728C7CBF6005EC9DB /* Levels.swift */,
+				6A82004C28DC784900193E23 /* Enum.swift */,
+				6A037ADD28E0B9B900918F58 /* MenuViewer.swift */,
+				6A037AE328E0C00C00918F58 /* Music.swift */,
 				6AE5D08F28C7CBD2005EC9DB /* Controller.swift */,
 				6AE5D09128C7CBD8005EC9DB /* Canvas.swift */,
-				6AE0057428E0CF01000BA343 /* Components */,
 				6A25E16B28CB79E600A51D8F /* Levels */,
 				6AE5D08428C7CB85005EC9DB /* Assets.xcassets */,
 				6AE5D08928C7CB85005EC9DB /* Info.plist */,
@@ -204,7 +193,6 @@
 				6AE5D09228C7CBD8005EC9DB /* Canvas.swift in Sources */,
 				6AB1D41128D5F3FB00F457AC /* Server.swift in Sources */,
 				6AE5D09428C7CBDC005EC9DB /* Model.swift in Sources */,
-				6AE0057328E0C447000BA343 /* CheckInternet.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

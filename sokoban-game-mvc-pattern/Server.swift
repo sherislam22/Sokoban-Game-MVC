@@ -14,20 +14,21 @@ class Server: NSObject {
         Stream.getStreamsToHost(withName: self.address, port: self.port, inputStream: &self.inputStream, outputStream: &self.outputStream)
     }
     func connect() {
+        
         guard let _ = inputStream, let _ = outputStream else {
             return
         }
-        inputStream.delegate = self
-        outputStream.delegate = self
+
         self.inputStream?.schedule(in: RunLoop.current, forMode: RunLoop.Mode.default)
         self.outputStream?.schedule(in: RunLoop.current, forMode: RunLoop.Mode.default)
 
         self.inputStream?.open()
         self.outputStream?.open()
     }
-    public func getStatus() -> Bool {
+    public func serverError() -> Bool {
         return serverState
     }
+
     func disconnect() {
         if let stream = self.inputStream {
             stream.close()
@@ -63,10 +64,8 @@ extension Server: StreamDelegate {
     func stream(_ aStream: Stream, handle eventCode: Stream.Event) {
         switch eventCode {
         case .errorOccurred:
-            print("error internet")
             serverState = false
             disconnect()
-            break
         case .openCompleted:
             serverState = true
         default:

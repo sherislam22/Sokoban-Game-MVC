@@ -21,6 +21,8 @@ public class Controller: UIViewController {
                                                                    target: self,
                                                                    action: #selector(selectLevels))
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "RESTART", style: .done, target: self, action: #selector(restartLevel))
+        playSound()
+
     }
     @objc private func restartLevel() {
         model.restartLevel()
@@ -28,6 +30,7 @@ public class Controller: UIViewController {
     private func selectLevel(level: Int) {
         model.selectLevel(level: level)
     }
+    
     @objc private func selectLevels() {
         let menuController = MenuViewer()
                menuController.delegate = self
@@ -38,6 +41,7 @@ public class Controller: UIViewController {
         navigationController!.present(menuController, animated: true)
 
     }
+    
     public func getmodel() -> Model {
         return model
     }
@@ -94,6 +98,7 @@ extension Controller: UIPopoverPresentationControllerDelegate, MenuDelegate {
         selectLevel(level: level)
         
     }
+    
     public func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
         return .none
     }

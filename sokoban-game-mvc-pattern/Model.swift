@@ -26,8 +26,8 @@ public class Model {
     }
     
 private func initialization() {
-    
-        desktop = levels.nextlevel(level: level)
+    desktop = levels.nextlevel(level: level)
+        
         var countOne = 0
         var countThree = 0
         var countFour = 0
@@ -57,7 +57,8 @@ private func initialization() {
                        a = a + 1
                     }
                  }
-              }                    
+              }
+                                
     }
     public func checkStateModel() -> Bool {
         return stateModel
@@ -90,7 +91,9 @@ private func won() {
             viewer.SuccesAlert()
             initialization()
             viewer.update()
+            
         }
+
     }
     public func selectLevel(level: Int) {
         self.level = level
