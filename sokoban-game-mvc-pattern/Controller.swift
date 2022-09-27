@@ -21,7 +21,6 @@ public class Controller: UIViewController {
                                                                    target: self,
                                                                    action: #selector(selectLevels))
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "RESTART", style: .done, target: self, action: #selector(restartLevel))
-        playSound()
 
     }
     @objc private func restartLevel() {
