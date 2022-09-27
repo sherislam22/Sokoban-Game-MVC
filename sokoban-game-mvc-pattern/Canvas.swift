@@ -42,23 +42,18 @@ public class Canvas: UIView {
     }
     public override func draw(_ rect: CGRect) {
         desktop = model!.getdesktop()
-        if desktop == [] {
-            errorImage.draw(in: CGRect(x: 0, y: 0, width: bounds.width, height: bounds.height))
-        } else {
-            drawBoard()
-        }
+        drawBoard()
     }
     func drawBoard() {
-      
-        let col: CGFloat =  CGFloat(desktop.count)
-        let fitWidth = frame.height / col
-        let row: CGFloat = CGFloat(desktop.count)
-        let fitHeight = frame.width / row
-        cellSide = Int(min(fitWidth, fitHeight) / 1.2)
-        start = Int(CGFloat(frame.width - CGFloat(cellSide) * col) / 2) - 10
-        var x = start
-        var y = Int(CGFloat(frame.height - CGFloat(cellSide) * row) / 2)
         if model!.checkStateModel() {
+            let col: CGFloat =  CGFloat(desktop.count)
+            let fitWidth = frame.height / col
+            let row: CGFloat = CGFloat(desktop.count)
+            let fitHeight = frame.width / row
+            cellSide = Int(min(fitWidth, fitHeight) / 1.2)
+            start = Int(CGFloat(frame.width - CGFloat(cellSide) * col) / 2) - 10
+            var x = start
+            var y = Int(CGFloat(frame.height - CGFloat(cellSide) * row) / 2)
             for i in 0..<desktop.count {
                 for j in 0..<desktop[i].count {
                     if desktop[i][j] == 1 {
