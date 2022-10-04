@@ -3,9 +3,9 @@ import UIKit
 public class Canvas: UIView {
     private var model: Model?
     private var desktop: [[Int]]
-    private var start = 0
+    private var start: Int
     private var didSetupConstraints = false
-    private var cellSide  = 0
+    private var cellSide: Int
     private var herodown: UIImage!
     private var heroup: UIImage!
     private var heroleft: UIImage!
@@ -18,6 +18,8 @@ public class Canvas: UIView {
     public init(frame: CGRect, model: Model) {
         self.model = model
         self.desktop = model.getdesktop()
+        cellSide = 29
+        start = 0
         super.init(frame: frame)
         herodown = UIImage(named: "hero_down")
         heroup = UIImage(named: "hero_up")
@@ -28,16 +30,11 @@ public class Canvas: UIView {
         imageGoal = UIImage(named: "ground_goal")
         imageWhiteplace = UIImage(named: "ground")
         errorImage = UIImage(named: "error")
-        
         backgroundColor = .clear
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    public func updateView() {
-        drawBoard()
-        
     }
     public override func draw(_ rect: CGRect) {
         desktop = model!.getdesktop()
@@ -45,12 +42,13 @@ public class Canvas: UIView {
     }
     func drawBoard() {
         if model!.checkStateModel() {
+          
             let col: CGFloat =  CGFloat(desktop.count)
             let fitWidth = frame.height / col
             let row: CGFloat = CGFloat(desktop.count)
             let fitHeight = frame.width / row
-            cellSide = Int(min(fitWidth, fitHeight) / 1.2)
-            start = Int(CGFloat(frame.width - CGFloat(cellSide) * col) / 2) - 10
+            cellSide = Int(min(fitWidth, fitHeight) / 1.3)
+            start = Int(CGFloat(frame.width - CGFloat(cellSide) * col) / 2)
             var x = start
             var y = Int(CGFloat(frame.height - CGFloat(cellSide) * row) / 2)
             for i in 0..<desktop.count {
@@ -81,6 +79,7 @@ public class Canvas: UIView {
                         imageWhiteplace.draw(in: CGRect(x: x, y: y, width: cellSide, height: cellSide))
                     } else{
                     }
+                    
                     x = x + cellSide
                 }
                 y = y + cellSide

@@ -12,6 +12,7 @@ public class Viewer: UIResponder, UIApplicationDelegate {
         let frame: CGRect = UIScreen.main.bounds
         self.window = UIWindow(frame: frame)
         canvas = Canvas( frame: frame, model: model!)
+        canvas?.center = (controller?.view.center)!
         controller?.view.addSubview(canvas!)
         let navigationController = UINavigationController(rootViewController: controller!)
         window?.rootViewController = navigationController
@@ -23,10 +24,10 @@ public class Viewer: UIResponder, UIApplicationDelegate {
         canvas?.setNeedsDisplay()
     }
     public func applicationWillResignActive(_ application: UIApplication) {
-        stopSound()
+        Music.stopSound()
     }
     public func applicationDidBecomeActive(_ application: UIApplication) {
-        playSound()
+        Music.playSound()
     }
     func SuccesAlert() {
         let alert = UIAlertController(title: "Succes", message: "Succes level", preferredStyle: .alert)

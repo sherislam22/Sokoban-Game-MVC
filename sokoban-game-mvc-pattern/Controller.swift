@@ -3,10 +3,11 @@ public class Controller: UIViewController {
     private var model: Model!
     private var x1: Int!
     private var y1: Int!
-    private let dataArray: [Int] = [1,2,3,4,5,6]
+    var shuffle = false
     public required init?(coder: NSCoder) {
         print("im viewer root")
         super.init(coder: coder)
+        
     }
     
     public init(viewer: Viewer) {
@@ -14,22 +15,32 @@ public class Controller: UIViewController {
         x1 = 0
         y1 = 0
         super.init(nibName: nil, bundle: nil)
+        
         view.contentMode = .scaleToFill
         view.backgroundColor = UIColor(patternImage: UIImage(named: "bg")!)
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "list.dash"),
                                                             style: .done,
                                                             target: self,
                                                             action: #selector(selectLevels))
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "RESTART", style: .done, target: self, action: #selector(restartLevel))
+        navigationItem.leftBarButtonItems = [UIBarButtonItem(image: UIImage(systemName: "backward.end"), style: .done, target: self, action: #selector(restartLevel)),UIBarButtonItem(image: UIImage(systemName: "speaker.slash.fill"), style: .done, target: self, action: #selector(sounfOff))]
         
     }
     @objc private func restartLevel() {
         model.restartLevel()
     }
+    @objc private func sounfOff() {
+        shuffle = !shuffle
+        if shuffle {
+            Music.muteSound()
+            
+        } else if !shuffle {
+            Music.unMuteSound()
+        }
+        
+    }
     private func selectLevel(level: Int) {
         model.selectLevel(level: level)
     }
-    
     @objc private func selectLevels() {
         let menuController = MenuViewer()
         menuController.delegate = self
