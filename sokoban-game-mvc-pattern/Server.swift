@@ -1,19 +1,19 @@
 import Foundation
-class Server: NSObject {
+public class Server: NSObject {
     private let address: String
     private let port: Int
     private var inputStream: InputStream!
     private var outputStream: OutputStream!
     private let maxReadLength: Int
     private var serverState: Bool
-    override init() {
+    public override init() {
         address = "194.152.37.7"
         port = 5546
         maxReadLength = 56842
         serverState = false
         Stream.getStreamsToHost(withName: self.address, port: self.port, inputStream: &self.inputStream, outputStream: &self.outputStream)
     }
-    func connect() {
+    public func connect() {
         serverState = true
         guard let _ = inputStream, let _ = outputStream else {
             return
@@ -28,8 +28,8 @@ class Server: NSObject {
     public func serverError() -> Bool {
         return serverState
     }
-
-    func disconnect() {
+    
+    public func disconnect() {
         if let stream = self.inputStream {
             stream.close()
             stream.remove(from: RunLoop.current, forMode: .common)
@@ -41,30 +41,30 @@ class Server: NSObject {
         self.inputStream = nil
         self.outputStream = nil
     }
-
-    func write(level: String) {
+    
+    public func write(level: String) {
         let data = level.data(using: .utf8)!
-                let nsdata = NSData(data: data).bytes
-                outputStream.write(nsdata, maxLength: data.count)
+        let nsdata = NSData(data: data).bytes
+        outputStream.write(nsdata, maxLength: data.count)
     }
-
-    func readAvailableBytes() -> String {
+    
+    public func readAvailableBytes() -> String {
         if serverState == false {
             return "error"
         }
         let buffer = UnsafeMutablePointer<UInt8>.allocate(capacity: maxReadLength)
         let read = inputStream.read(buffer, maxLength: maxReadLength)
-                if read != -1 {
-                    let data = Data(bytes: buffer, count: read)
-                    let answer = String(data: data, encoding: .utf8)
-                    return answer ?? "error"
-                }
+        if read != -1 {
+            let data = Data(bytes: buffer, count: read)
+            let answer = String(data: data, encoding: .utf8)
+            return answer ?? "error"
+        }
         buffer.deallocate()
         return ""
     }
 }
 extension Server: StreamDelegate {
-    func stream(_ aStream: Stream, handle eventCode: Stream.Event) {
+    public func stream(_ aStream: Stream, handle eventCode: Stream.Event) {
         switch eventCode {
         case .errorOccurred:
             serverState = false
@@ -75,6 +75,6 @@ extension Server: StreamDelegate {
         default:
             serverState = true
         }
-    
+        
     }
 }

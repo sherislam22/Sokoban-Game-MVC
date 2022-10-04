@@ -17,11 +17,11 @@ public class Controller: UIViewController {
         view.contentMode = .scaleToFill
         view.backgroundColor = UIColor(patternImage: UIImage(named: "bg")!)
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "list.dash"),
-                                                                   style: .done,
-                                                                   target: self,
-                                                                   action: #selector(selectLevels))
+                                                            style: .done,
+                                                            target: self,
+                                                            action: #selector(selectLevels))
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "RESTART", style: .done, target: self, action: #selector(restartLevel))
-
+        
     }
     @objc private func restartLevel() {
         model.restartLevel()
@@ -32,13 +32,13 @@ public class Controller: UIViewController {
     
     @objc private func selectLevels() {
         let menuController = MenuViewer()
-               menuController.delegate = self
+        menuController.delegate = self
         menuController.modalPresentationStyle = .popover
-               let popoverPresentationController = menuController.popoverPresentationController
+        let popoverPresentationController = menuController.popoverPresentationController
         popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
-               popoverPresentationController?.delegate = self
+        popoverPresentationController?.delegate = self
         navigationController!.present(menuController, animated: true)
-
+        
     }
     
     public func getmodel() -> Model {

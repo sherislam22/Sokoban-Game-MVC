@@ -9,7 +9,6 @@ public class Levels {
         
         levelAtServer = []
     }
-    
     public func nextlevel(level: Int) -> [[Int]] {
         var desktop: [[Int]]
         switch level {
@@ -98,7 +97,6 @@ public class Levels {
         }
         return convert(text: text)
     }
-    
     private func  loadTextFromServer(filename: String) -> [[Int]] {
         let server = Server()
         server.connect()
@@ -109,11 +107,8 @@ public class Levels {
         } else {
             server.disconnect()
             return []
-            
         }
     }
-
-    
     private func convert(text: String) -> [[Int]] {
         var row: Int = 0
         for i in text {

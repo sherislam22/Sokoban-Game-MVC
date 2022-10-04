@@ -1,11 +1,10 @@
 import AVFoundation
 var player: AVAudioPlayer?
-
-func playSound() {
+public func playSound() {
     guard let path = Bundle.main.path(forResource: "music", ofType:"mp3") else {
         return }
     let url = URL(fileURLWithPath: path)
-
+    
     do {
         player = try AVAudioPlayer(contentsOf: url)
         player?.play()
@@ -15,11 +14,11 @@ func playSound() {
     }
 }
 
-func stopSound() {
+public func stopSound() {
     guard let path = Bundle.main.path(forResource: "music", ofType:"mp3") else {
         return }
     let url = URL(fileURLWithPath: path)
-
+    
     do {
         player = try AVAudioPlayer(contentsOf: url)
         player?.stop()

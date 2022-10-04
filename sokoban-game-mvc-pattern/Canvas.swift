@@ -1,6 +1,5 @@
 import Foundation
 import UIKit
-
 public class Canvas: UIView {
     private var model: Model?
     private var desktop: [[Int]]
@@ -29,7 +28,7 @@ public class Canvas: UIView {
         imageGoal = UIImage(named: "ground_goal")
         imageWhiteplace = UIImage(named: "ground")
         errorImage = UIImage(named: "error")
-
+        
         backgroundColor = .clear
     }
     
@@ -37,7 +36,7 @@ public class Canvas: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     public func updateView() {
-       drawBoard()
+        drawBoard()
         
     }
     public override func draw(_ rect: CGRect) {
@@ -57,17 +56,16 @@ public class Canvas: UIView {
             for i in 0..<desktop.count {
                 for j in 0..<desktop[i].count {
                     if desktop[i][j] == 1 {
-                        switch model?.getplayerfacedirection() {
-                        case .down :
+                        if model?.getplayerfacedirection() == "Down" {
                             herodown.draw(in: CGRect(x: x, y: y, width: cellSide, height: cellSide))
-                        case .up:
+                        } else if model?.getplayerfacedirection() == "Up" {
                             heroup.draw(in: CGRect(x: x, y: y, width: cellSide, height: cellSide))
-                        case .rigth:
+                        } else if model?.getplayerfacedirection() ==  "Right" {
                             heroright.draw(in: CGRect(x: x, y: y, width: cellSide, height: cellSide))
-                        case .left:
+                        } else if model?.getplayerfacedirection() ==  "Left" {
                             heroleft.draw(in: CGRect(x: x, y: y, width: cellSide, height: cellSide))
-                       
-                        case .none:
+                        }
+                        else {
                             herodown.draw(in: CGRect(x: x, y: y, width: cellSide, height: cellSide))
                         }
                     }else if desktop[i][j] == 2 {
@@ -90,8 +88,7 @@ public class Canvas: UIView {
                 
             }
         } else {
-            errorImage.draw(in: CGRect(x: 0, y: 0, width: bounds.width, height: bounds.height))
-            
+            model?.ifNotConnection()
         }
         
     }
