@@ -78,7 +78,7 @@ public class Canvas: UIView {
                     else if desktop[i][k] == 0 && k > indexTwoArray[0] && k < indexTwoArray[indexTwoArray.count - 1]  {
                         imageWhiteplace.draw(in: CGRect(x: x, y: y, width: cellSide, height: cellSide))
                     } else{
-                        continue
+                        
                     }
                     
                     x = x + cellSide
