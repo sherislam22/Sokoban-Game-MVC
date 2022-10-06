@@ -64,7 +64,7 @@ public class Canvas: UIView {
                         else {
                             herodown.draw(in: CGRect(x: x, y: y, width: cellSide, height: cellSide))
                         }
-                    }else if desktop[i][j] < indexTwoArray[0] && desktop[i][j] > indexTwoArray.last! {
+                    }else if desktop[i][j] == 2 {
                         imageWall.draw(in: CGRect(x: x, y: y, width: cellSide, height: cellSide))
                     }
                     else if desktop[i][j] == 3 {
