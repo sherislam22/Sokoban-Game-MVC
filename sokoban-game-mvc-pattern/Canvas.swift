@@ -19,7 +19,7 @@ public class Canvas: UIView {
         self.model = model
         self.desktop = model.getdesktop()
         cellSide = 29
-        start = 0
+        start = Int(UIScreen.main.bounds.width - 290) / 2
         super.init(frame: frame)
         herodown = UIImage(named: "hero_down")
         heroup = UIImage(named: "hero_up")
@@ -42,17 +42,15 @@ public class Canvas: UIView {
     }
     func drawBoard() {
         if model!.checkStateModel() {
-          
-            let col: CGFloat =  CGFloat(desktop.count)
-            let fitWidth = frame.height / col
-            let row: CGFloat = CGFloat(desktop.count)
-            let fitHeight = frame.width / row
-            cellSide = Int(min(fitWidth, fitHeight) / 1.3)
-            start = Int(CGFloat(frame.width - CGFloat(cellSide) * col) / 2)
-            var x = start
-            var y = Int(CGFloat(frame.height - CGFloat(cellSide) * row) / 2)
+            var x =  start
+            var y = Int(UIScreen.main.bounds.height / 2) - 145
             for i in 0..<desktop.count {
+                
                 for j in 0..<desktop[i].count {
+                    var indexTwoArray = [Int]()
+                    if desktop[i][j] == 2 {
+                        indexTwoArray.append(desktop[i][j])
+                    }
                     if desktop[i][j] == 1 {
                         if model?.getplayerfacedirection() == "Down" {
                             herodown.draw(in: CGRect(x: x, y: y, width: cellSide, height: cellSide))
@@ -66,7 +64,7 @@ public class Canvas: UIView {
                         else {
                             herodown.draw(in: CGRect(x: x, y: y, width: cellSide, height: cellSide))
                         }
-                    }else if desktop[i][j] == 2 {
+                    }else if desktop[i][j] < indexTwoArray[0] && desktop[i][j] > indexTwoArray.last! {
                         imageWall.draw(in: CGRect(x: x, y: y, width: cellSide, height: cellSide))
                     }
                     else if desktop[i][j] == 3 {

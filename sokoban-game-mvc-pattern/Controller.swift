@@ -7,7 +7,6 @@ public class Controller: UIViewController {
     public required init?(coder: NSCoder) {
         print("im viewer root")
         super.init(coder: coder)
-        
     }
     
     public init(viewer: Viewer) {
@@ -15,7 +14,6 @@ public class Controller: UIViewController {
         x1 = 0
         y1 = 0
         super.init(nibName: nil, bundle: nil)
-        
         view.contentMode = .scaleToFill
         view.backgroundColor = UIColor(patternImage: UIImage(named: "bg")!)
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "list.dash"),
@@ -68,13 +66,13 @@ public class Controller: UIViewController {
         }
         
     }
-    public func movePressed(position: CGPoint) {
+    private func movePressed(position: CGPoint) {
         x1 = Int(position.x)
         y1 = Int(position.y)
         
     }
     
-    public func mouseReleased(position: CGPoint) {
+    private func mouseReleased(position: CGPoint) {
         let x2: Int = Int(position.x)
         let y2: Int = Int(position.y)
         movePosition(x2: x2, y2: y2)
