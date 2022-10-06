@@ -45,13 +45,14 @@ public class Canvas: UIView {
             var x =  start
             var y = Int(UIScreen.main.bounds.height / 2) - 145
             for i in 0..<desktop.count {
-                
+                var indexTwoArray = [Int]()
                 for j in 0..<desktop[i].count {
-                    var indexTwoArray = [Int]()
                     if desktop[i][j] == 2 {
-                        indexTwoArray.append(desktop[i][j])
+                        indexTwoArray.append(j)
                     }
-                    if desktop[i][j] == 1 {
+                }
+                for k in 0..<desktop[i].count {
+                    if desktop[i][k] == 1 {
                         if model?.getplayerfacedirection() == "Down" {
                             herodown.draw(in: CGRect(x: x, y: y, width: cellSide, height: cellSide))
                         } else if model?.getplayerfacedirection() == "Up" {
@@ -64,18 +65,20 @@ public class Canvas: UIView {
                         else {
                             herodown.draw(in: CGRect(x: x, y: y, width: cellSide, height: cellSide))
                         }
-                    }else if desktop[i][j] == 2 {
+                    }
+                    else if desktop[i][k] == 2 {
                         imageWall.draw(in: CGRect(x: x, y: y, width: cellSide, height: cellSide))
                     }
-                    else if desktop[i][j] == 3 {
+                    else if desktop[i][k] == 3 {
                         imageBox.draw(in: CGRect(x: x, y: y, width: cellSide, height: cellSide))
                     }
-                    else if desktop[i][j] == 4 {
+                    else if desktop[i][k] == 4 {
                         imageGoal.draw(in: CGRect(x: x, y: y, width: cellSide, height: cellSide))
                     }
-                    else if desktop[i][j] == 0 {
+                    else if desktop[i][k] == 0 && k > indexTwoArray[0] && k < indexTwoArray[indexTwoArray.count - 1]  {
                         imageWhiteplace.draw(in: CGRect(x: x, y: y, width: cellSide, height: cellSide))
                     } else{
+                        continue
                     }
                     
                     x = x + cellSide
