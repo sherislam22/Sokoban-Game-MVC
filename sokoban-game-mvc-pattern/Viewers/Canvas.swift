@@ -15,12 +15,12 @@ public class Canvas: UIView {
     private var imageWall: UIImage!
     private var errorImage: UIImage!
     private var imageWhiteplace: UIImage!
-    public init(frame: CGRect, model: Model) {
+    public init(model: Model) {
         self.model = model
         self.desktop = model.getdesktop()
         cellSide = 29
         start = Int(UIScreen.main.bounds.width - 290) / 2
-        super.init(frame: frame)
+        super.init(frame: UIScreen.main.bounds)
         herodown = UIImage(named: "hero_down")
         heroup = UIImage(named: "hero_up")
         heroleft = UIImage(named: "hero_left")
